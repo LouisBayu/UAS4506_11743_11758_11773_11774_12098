@@ -97,7 +97,7 @@ public class OnBoarding extends AppCompatActivity {
     }
 
     public void onClickSkipOnboard(View view) {
-        Intent i = new Intent(OnBoarding.this, Home.class);
+        Intent i = new Intent(OnBoarding.this, MainActivity.class);
         startActivity(i);
         finish();
     }

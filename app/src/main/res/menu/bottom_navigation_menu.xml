@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/page_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="Home"/>
+    <item
+        android:id="@+id/page_search"
+        android:enabled="true"
+        android:icon="@drawable/ic_search2"
+        android:title="Search"/>
+
+    <item
+        android:id="@+id/page_add"
+        android:enabled="true"
+        android:icon="@drawable/ic_add"
+        android:title="Bagikan Resep"/>
+
+    <item
+        android:id="@+id/page_saved"
+        android:enabled="true"
+        android:icon="@drawable/ic_saved"
+        android:title="Tersimpan"/>
+
+    <item
+        android:id="@+id/page_profil"
+        android:enabled="true"
+        android:icon="@drawable/ic_person"
+        android:title="Profil"/>
+</menu>
