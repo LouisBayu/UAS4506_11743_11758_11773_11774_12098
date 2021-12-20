@@ -33,7 +33,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         android:layout_marginTop="45dp"
                         android:layout_gravity="left"
-                        android:text="Halo Gaes,"
+                        android:text="Halo Everybody,"
                         android:fontFamily="@font/raleway_extrabold"
                         android:textColor="@color/orangeTextHeading"
                         android:textSize="30sp"/>
