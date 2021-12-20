@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ResetCode"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    android:paddingRight="30dp"
+    android:paddingLeft="30dp">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/resetcode_logo"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/raleway_extrabold"
+        android:layout_gravity="center"
+        android:text="Verifikasi"
+        android:textAllCaps="true"
+        android:textColor="@color/orangeTextHeading"
+        android:textSize="30sp"
+        android:letterSpacing="0.03"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway_extrabold"
+        android:layout_gravity="center"
+        android:text="Reset Code"
+        android:textAllCaps="true"
+        android:textColor="@color/orangeTextHeading"
+        android:textSize="30sp"
+        android:letterSpacing="0.03"/>
+
+    <TextView
+        android:id="@+id/textDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/raleway_semibold"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="@string/desc_step2"
+        android:textColor="@color/orangeButton"
+        android:textSize="19sp"
+        android:letterSpacing="0.02"/>
+
+    <com.chaos.view.PinView
+        android:id="@+id/pinView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:itemCount="6"
+        app:itemWidth="50dp"
+        android:height="50dp"
+        android:layout_gravity="center"
+        app:lineColor="@color/orangeButton"
+        android:itemBackground="#fffde5"
+        style="@style/PinWidget.PinView"
+        android:inputType="number"
+        android:cursorVisible="true"
+        app:cursorColor="@color/orangeButton"
+        app:hideLineWhenFilled="false"
+        app:itemRadius="7dp"
+        android:fontFamily="@font/raleway_bold"
+        android:textColor="@color/orangeButton"
+        android:textSize="18dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:layout_marginTop="20dp"
+        app:backgroundTint="@color/orangeButton"
+        android:text="Verify"
+        android:textAllCaps="false"
+        android:fontFamily="@font/raleway_bold"
+        android:textSize="17sp"
+        android:onClick="onClickVerify"/>
+
+    <TextView
+        android:id="@+id/showPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Kirim Ulang Kode"
+        android:layout_gravity="center"
+        android:fontFamily="@font/raleway_bold"
+        android:textColor="@color/orangeButton"
+        android:textSize="18sp"
+        android:layout_alignParentRight="true"
+        android:onClick="onClickResend"/>
+
+</LinearLayout>

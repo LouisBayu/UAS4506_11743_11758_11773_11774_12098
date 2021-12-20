@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">UAS4506_11743_11758_11773_11774_12098</string>
+
+    <!--String On Boarding Layout-->
+
+    <!--Judul-->
+    <string name="first_slide_title">Cari Resep Masakan</string>
+    <string name="second_slide_title">Jadi Koki di Rumah</string>
+    <string name="third_slide_title">Bagikan Resep Anda</string>
+    <!--Deskripsi-->
+    <string name="first_slide_desc">Cari dan temukan beragam resep masakan menarik pada aplikasi ini</string>
+    <string name="second_slide_desc">Semua orang bisa menjadi koki di rumah dengan memanfaatkan resep yang ada di aplikasi ini</string>
+    <string name="third_slide_desc">Silahkan login untuk membagikan resep masakan yang Anda punya ke orang lain</string>
+
+    <!--String On Login Layout-->
+    <string name="greetings">Selamat Datang</string>
+    <string name="sub_greetings">Silahkan login untuk mulai mencari dan membagikan resep Anda</string>
+    <string name="forgot">Lupa Password?</string>
+    <string name="dont_have_account">Tidak Punya Akun?</string>
+
+    <!--String On Register Layout-->
+    <string name="text_register">Daftar Akun</string>
+    <string name="text_desc_register">Daftar akun baru untuk mulai berbagi dan mencari resep masakan</string>
+    <string name="have_account">Sudah Punya Akun?</string>
+
+    <!--String On Forgot Steps Layout-->
+    <string name="desc_step1">Masukkan alamat email Anda untuk menerima kode Reset Password</string>
+    <string name="desc_step2">Masukkan Reset Code yang telah dikirimkan ke email Anda</string>
+    <string name="desc_step3">Atur ulang kata sandi Anda untuk login pada aplikasi ini</string>
+
+    <!--String On Success Layout-->
+    <string name="desc_success_change">Password berhasil diperbarui!\nSilahkan login untuk lanjut menggunakan aplikasi ini</string>
+    <string name="desc_success_register">Akun Anda telah berhasil dibuat, silahkan login untuk mulai menggunakan aplikasi ini</string>
+    <string name="desc_success_login">Login telah berhasil dilakukan</string>
+
+    <!--String On Dashboard Layout-->
+    <string name="ask">Apa yang ingin Anda buat hari ini?</string>
+    <string name="resep_terbaru">Resep Tebaru</string>
+    <string name="rekomendasi">Rekomendasi Untukmu</string>
+    <string name="kategori">Kategori</string>
+    <string name="sharenow"><u>Bagikan Sekarang</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

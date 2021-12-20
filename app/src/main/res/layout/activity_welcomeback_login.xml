@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.WelcomebackLogin"
+    android:background="@color/bg">
+
+<!--    Gambar Header-->
+    <ImageView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="232dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/topbanner"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+<!--    Layout Greetings-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/greetings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        android:paddingRight="30dp"
+        android:paddingLeft="30dp">
+        <TextView
+            android:id="@+id/greetingsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/greetings"
+            android:fontFamily="@font/raleway_extrabold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@id/greetings"
+            android:textColor="@color/orangeTextHeading"
+            android:textSize="33sp"
+            android:letterSpacing="0.03"/>
+        <ImageView
+            android:layout_width="55dp"
+            android:layout_height="35dp"
+            android:src="@drawable/handbye"
+            app:layout_constraintStart_toEndOf="@id/greetingsText"
+            app:layout_constraintBottom_toBottomOf="@id/greetingsText"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sub_greetings"
+            android:textSize="18sp"
+            android:fontFamily="@font/raleway_semibold"
+            android:gravity="fill_horizontal"
+            android:textColor="@color/orangeButton"
+            app:layout_constraintTop_toBottomOf="@id/greetingsText"
+            app:layout_constraintStart_toStartOf="@id/greetingsText"
+            android:layout_marginTop="15dp"
+            android:letterSpacing="0.02"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--    Layout Text Input-->
+    <LinearLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:layout_marginTop="26dp"
+        app:layout_constraintTop_toBottomOf="@id/greetings"
+        android:orientation="vertical">
+<!--        EditText Email-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/email"
+            android:hint="Email"
+            android:textColorHint="@color/orangeButton"
+            style="@style/customInput">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="10dp"
+                android:inputType="textEmailAddress"/>
+        </com.google.android.material.textfield.TextInputLayout>
+<!--        Edit Text Password-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/password"
+            android:hint="Password"
+            android:textColorHint="@color/orangeButton"
+            style="@style/customInput"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/orangeButton"
+            android:layout_marginTop="10dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordEditText"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:drawableStart="@drawable/ic_password"
+                android:drawablePadding="10dp"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+<!--        Text Forgot Password-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/forgot"
+        android:fontFamily="@font/raleway_bold"
+        android:textColor="@color/orangeButton"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:onClick="onClickForgotPassword"/>
+
+<!--    Button Login-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/dontHaveAccount"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="11dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:cornerRadius="5dp"
+            android:text="Login"
+            android:textAllCaps="false"
+            android:fontFamily="@font/raleway_bold"
+            android:textSize="23sp"
+            android:onClick="onClickLogin"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:id="@+id/dontHaveAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="48dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dont_have_account"
+            android:textColor="@color/grey"
+            android:textSize="18sp"
+            android:fontFamily="@font/raleway"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Daftar"
+            android:textColor="@color/orangeButton"
+            android:textSize="19sp"
+            android:fontFamily="@font/raleway_bold"
+            android:onClick="onClickDaftar"
+            />
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
