@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "324481258727",
+    "project_id": "uas4506",
+    "storage_bucket": "uas4506.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:324481258727:android:8f14dd082b805545b93e42",
+        "android_client_info": {
+          "package_name": "com.udinus.uas4506_11743_11758_11773_11774_12098"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "324481258727-llqfn5l6ki9o8lvtu9d07jm2e3rcrhg0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0gMQ7Ic5usI0D24juKhPnXxDh-wzdKNU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "324481258727-llqfn5l6ki9o8lvtu9d07jm2e3rcrhg0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
