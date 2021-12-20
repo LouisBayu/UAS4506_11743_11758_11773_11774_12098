@@ -30,7 +30,7 @@
             android:id="@+id/greetingsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/greetings"
+            android:text="Welcome"
             android:fontFamily="@font/raleway_extrabold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="@id/greetings"
