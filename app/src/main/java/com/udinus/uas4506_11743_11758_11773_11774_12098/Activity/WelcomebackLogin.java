@@ -1,5 +1,6 @@
 package com.udinus.uas4506_11743_11758_11773_11774_12098.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,13 +13,28 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.Adapter.UserHelperClass;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
-public class WelcomebackLogin extends AppCompatActivity {
+import java.lang.ref.Reference;
 
+public class WelcomebackLogin extends AppCompatActivity {
     TextInputEditText emailEditText;
     TextInputEditText passwordEditText;
+    FirebaseDatabase rootNode;
+    DatabaseReference reference;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +51,13 @@ public class WelcomebackLogin extends AppCompatActivity {
         // Binding Edit Text
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
+
     }
 
     public void onClickLogin(View view){
+        rootNode = FirebaseDatabase.getInstance();
+        reference = rootNode.getReference("users");
+        mAuth = FirebaseAuth.getInstance();
 //        Validasi Inputan Kosong
         if (TextUtils.isEmpty(emailEditText.getText().toString().trim())
             && TextUtils.isEmpty(passwordEditText.getText().toString().trim())){
@@ -50,10 +70,45 @@ public class WelcomebackLogin extends AppCompatActivity {
         // Validasi Email
         else if (!isValidEmail(emailEditText.getText().toString().trim())){
             Toast.makeText(view.getContext(), "Email Tidak Valid!", Toast.LENGTH_SHORT).show();
-        } else {
-            Intent i = new Intent(WelcomebackLogin.this, LoginSuccess.class);
-            startActivity(i);
-            finish();
+        }else {
+            String email = emailEditText.getText().toString().trim();
+            String password = passwordEditText.getText().toString().trim();
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+                        Intent i = new Intent(WelcomebackLogin.this, LoginSuccess.class);
+                            startActivity(i);
+                            finish();
+                    }else {
+                        Toast.makeText(WelcomebackLogin.this, "Log in Error" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+
+//            Query check_email = reference.orderByChild("email").equalTo(email);
+//
+//            check_email.addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    if (snapshot.exists()){
+//                        String passwordcheck = snapshot.child(email).child("password").getValue(String.class);
+//                        if (passwordcheck.equals(password)){
+//                            Intent i = new Intent(WelcomebackLogin.this, LoginSuccess.class);
+//                            startActivity(i);
+//                            finish();
+//                        }else {
+//                            Toast.makeText(view.getContext(), "Password Salah", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }else {
+//                        Toast.makeText(view.getContext(), "Email Tidak Terdaftar", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//                }
+//            });
         }
     }
 
@@ -70,4 +125,5 @@ public class WelcomebackLogin extends AppCompatActivity {
         Intent i = new Intent(WelcomebackLogin.this, Register.class);
         startActivity(i);
     }
+
 }

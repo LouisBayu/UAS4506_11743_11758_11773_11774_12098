@@ -45,7 +45,7 @@ public class AddResep extends AppCompatActivity {
     }
 
     public void onClickBack(View view){
-        Intent i = new Intent(this, Home.class);
+        Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
         finish();
     }
@@ -68,7 +68,7 @@ public class AddResep extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent i = new Intent(AddResep.this, Home.class);
+                    Intent i = new Intent(AddResep.this, MainActivity.class);
                     startActivity(i);
                     finish();
                 }

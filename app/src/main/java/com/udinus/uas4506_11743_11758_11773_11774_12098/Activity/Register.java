@@ -1,7 +1,9 @@
 package com.udinus.uas4506_11743_11758_11773_11774_12098.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,9 +12,17 @@ import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Adapter;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.Adapter.UserHelperClass;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
 public class Register extends AppCompatActivity {
@@ -22,6 +32,10 @@ public class Register extends AppCompatActivity {
     TextInputEditText emailEditText;
     TextInputEditText phoneEditText;
     TextInputEditText passwordEditText;
+
+    FirebaseDatabase rootNode;
+    DatabaseReference reference;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +58,9 @@ public class Register extends AppCompatActivity {
     }
 
     public void onClickRegister(View view){
+        rootNode = FirebaseDatabase.getInstance();
+        reference =rootNode.getReference("users");
+        mAuth = FirebaseAuth.getInstance();
         if (TextUtils.isEmpty(emailEditText.getText().toString().trim())
                 || TextUtils.isEmpty(passwordEditText.getText().toString().trim())
                 || TextUtils.isEmpty(usernameEditText.getText().toString().trim())
@@ -54,9 +71,28 @@ public class Register extends AppCompatActivity {
         else if (!isValidEmail(emailEditText.getText().toString().trim())){
             Toast.makeText(view.getContext(), "Email Tidak Valid!", Toast.LENGTH_SHORT).show();
         } else {
-            Intent i = new Intent(Register.this, RegisterSuccess.class);
-            startActivity(i);
-            finish();
+            String fullname = fullnameEditText.getText().toString().trim();
+            String username = usernameEditText.getText().toString().trim();
+            String email = emailEditText.getText().toString().trim();
+            String phone = phoneEditText.getText().toString().trim();
+            String password = passwordEditText.getText().toString().trim();
+
+            UserHelperClass helperClass = new UserHelperClass(fullname, username, email, phone, password);
+
+            reference.child(username).setValue(helperClass);
+
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+                        Intent i = new Intent(Register.this, RegisterSuccess.class);
+                        startActivity(i);
+                        finish();
+                    }else {
+                        Toast.makeText(Register.this, "Registrasi Gagal" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
         }
     }
     public void onClickLogin(View view){

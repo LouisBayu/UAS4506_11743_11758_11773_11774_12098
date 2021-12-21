@@ -88,7 +88,7 @@ public class DetailResep extends AppCompatActivity {
     }
 
     public void onClickBack(View view){
-        Intent i = new Intent(this, Home.class);
+        Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
         finish();
     }
