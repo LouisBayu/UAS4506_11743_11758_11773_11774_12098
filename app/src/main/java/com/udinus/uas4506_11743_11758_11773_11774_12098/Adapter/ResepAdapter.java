@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Activity.DetailResep;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.Resep;
@@ -23,10 +24,12 @@ public class ResepAdapter extends RecyclerView.Adapter<ResepAdapter.ResepViewHol
 
     ArrayList<Resep> resepArray;
     Activity activity;
+    ViewPager2 vpRecommended;
 
-    public ResepAdapter(ArrayList<Resep> resepArray, Activity activity) {
+    public ResepAdapter(ArrayList<Resep> resepArray, Activity activity, ViewPager2 vp) {
         this.resepArray = resepArray;
         this.activity = activity;
+        this.vpRecommended = vp;
     }
 
     @NonNull
@@ -57,6 +60,10 @@ public class ResepAdapter extends RecyclerView.Adapter<ResepAdapter.ResepViewHol
                 activity.startActivity(intent);
             }
         });
+
+        if (position == resepArray.size()-2){
+            vpRecommended.post(runnable);
+        }
     }
 
     @Override
@@ -88,4 +95,12 @@ public class ResepAdapter extends RecyclerView.Adapter<ResepAdapter.ResepViewHol
             imageView.setImageResource(resep.getImage());
         }
     }
+
+    private Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            resepArray.addAll(resepArray);
+            notifyDataSetChanged();
+        }
+    };
 }

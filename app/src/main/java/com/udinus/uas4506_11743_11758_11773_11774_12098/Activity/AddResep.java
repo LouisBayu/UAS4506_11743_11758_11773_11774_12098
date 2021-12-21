@@ -12,8 +12,10 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
@@ -22,6 +24,8 @@ public class AddResep extends AppCompatActivity {
 
     ImageView addFoto;
     EditText langkahEditText, bahanEditText, namaResepEditText;
+    LinearLayout layoutBahan, layoutLangkah;
+    Button btnAddBahan, btnAddLangkah;
     int SELECT_IMAGE_CODE = 1;
 
     @Override
@@ -38,11 +42,61 @@ public class AddResep extends AppCompatActivity {
 
         addFoto = findViewById(R.id.addImage);
         namaResepEditText = findViewById(R.id.namaResepEditText);
-        langkahEditText = findViewById(R.id.langkahEditText);
-        bahanEditText = findViewById(R.id.bahanEditText);
+        layoutBahan = findViewById(R.id.layout_input_bahan);
+        layoutLangkah = findViewById(R.id.layout_input_langkah);
+        btnAddBahan = findViewById(R.id.btnAddBahan);
+        btnAddLangkah = findViewById(R.id.btnAddLangkah);
 
+//        bahanEditText = findViewById(R.id.bahanEditText);
+
+        btnAddBahan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addViewBahan();
+            }
+        });
+
+        btnAddLangkah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addViewLangkah();
+            }
+        });
+
+        addViewBahan();
+        addViewLangkah();
 
     }
+
+    private void addViewBahan(){
+        final View bahanView = getLayoutInflater().inflate(R.layout.row_add_bahan,null,false);
+
+        ImageView imageClose = (ImageView) bahanView.findViewById(R.id.ivRemoveBahan);
+
+        imageClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                layoutBahan.removeView(bahanView);
+            }
+        });
+
+        layoutBahan.addView(bahanView);
+    }
+    private void addViewLangkah(){
+        final View langkahView = getLayoutInflater().inflate(R.layout.row_add_langkah,null,false);
+
+        ImageView imageClose = (ImageView) langkahView.findViewById(R.id.ivRemoveLangkah);
+
+        imageClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                layoutLangkah.removeView(langkahView);
+            }
+        });
+
+        layoutLangkah.addView(langkahView);
+    }
+
 
     public void onClickBack(View view){
         Intent i = new Intent(this, MainActivity.class);

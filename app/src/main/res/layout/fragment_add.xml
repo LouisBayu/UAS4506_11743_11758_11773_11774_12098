@@ -16,4 +16,9 @@
         android:textStyle="bold"
         android:textColor="@color/white"/>
 
+    <Button
+        android:id="@+id/test"
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
+
 </FrameLayout>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.AddResep"
->
+    android:scrollIndicators="none">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,8 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
-            >
+            android:layout_marginLeft="30dp">
 
             <ImageView
                 android:layout_width="30dp"
@@ -122,25 +121,23 @@
             android:layout_marginLeft="30dp"
             android:drawableTint="@color/orangeButton" />
 
-        <EditText
-            android:id="@+id/bahanEditText"
+        <LinearLayout
+            android:id="@+id/layout_input_bahan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp">
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddBahan"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="30dp"
-            android:background="@drawable/addinput"
-            android:textColorHint="@color/orangeButton"
-            android:fontFamily="@font/raleway_medium"
-            android:textColor="@color/orangeButton"
-            android:textSize="15sp"
-            android:hint="Input bahan-bahan yang digunakan"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:drawablePadding="20dp"
-            android:inputType="textMultiLine"/>
+            android:layout_marginRight="30dp"
+            android:background="@drawable/ic_add"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -155,25 +152,23 @@
             android:layout_marginLeft="30dp"
             android:drawableTint="@color/orangeButton" />
 
-        <EditText
-            android:id="@+id/langkahEditText"
+        <LinearLayout
+            android:id="@+id/layout_input_langkah"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp">
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddLangkah"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="30dp"
-            android:background="@drawable/addinput"
-            android:textColorHint="@color/orangeButton"
-            android:fontFamily="@font/raleway_medium"
-            android:textColor="@color/orangeButton"
-            android:textSize="15sp"
-            android:hint="Input langkah pembuatan"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:drawablePadding="20dp"
-            android:inputType="textMultiLine"/>
+            android:layout_marginRight="30dp"
+            android:background="@drawable/ic_add"/>
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"

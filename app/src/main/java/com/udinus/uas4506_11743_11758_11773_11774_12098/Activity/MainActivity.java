@@ -99,4 +99,10 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.fragment_container, fragment)
                 .commit();
     }
+
+    public void onClickAdd(View view){
+        loadFragment(new Add());
+        bottomNavigationView.setSelectedItemId(R.id.page_add);
+    }
+
 }

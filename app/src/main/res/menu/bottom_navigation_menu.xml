@@ -3,29 +3,29 @@
     <item
         android:id="@+id/page_home"
         android:enabled="true"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/home"
         android:title="Home"/>
     <item
         android:id="@+id/page_search"
         android:enabled="true"
-        android:icon="@drawable/ic_search2"
+        android:icon="@drawable/search"
         android:title="Search"/>
 
     <item
         android:id="@+id/page_add"
         android:enabled="true"
-        android:icon="@drawable/ic_add"
+        android:icon="@drawable/add"
         android:title="Bagikan Resep"/>
 
     <item
         android:id="@+id/page_saved"
         android:enabled="true"
-        android:icon="@drawable/ic_saved"
+        android:icon="@drawable/bookmark"
         android:title="Tersimpan"/>
 
     <item
         android:id="@+id/page_profil"
         android:enabled="true"
-        android:icon="@drawable/ic_person"
+        android:icon="@drawable/user"
         android:title="Profil"/>
 </menu>

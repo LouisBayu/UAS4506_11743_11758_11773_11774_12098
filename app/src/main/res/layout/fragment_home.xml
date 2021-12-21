@@ -56,30 +56,16 @@
                         />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="26dp"
-                    android:background="@drawable/searchbar"
-                    android:drawableStart="@drawable/ic_search"
-                    android:hint="Search"
-                    android:textColorHint="@color/orangeButton"
-                    android:fontFamily="@font/raleway_semibold"
-                    android:textColor="@color/orangeButton"
-                    android:textSize="20sp"
-                    android:paddingLeft="20dp"
-                    android:drawablePadding="20dp"/>
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cardAsk"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="26dp"
+                    android:layout_marginTop="45dp"
                     android:background="@drawable/card_orange"
                     android:paddingLeft="20dp"
-                    android:paddingTop="15dp"
+                    android:paddingTop="5dp"
                     android:paddingRight="20dp"
-                    android:paddingBottom="15dp">
+                    android:paddingBottom="5dp">
 
                     <ImageView
                         android:id="@+id/dishLogo"
@@ -95,6 +81,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
                         android:fontFamily="@font/raleway_semibold"
                         android:gravity="fill_horizontal"
                         android:text="Anda punya resep masakan"
@@ -125,7 +112,8 @@
                         android:textColor="@color/orangeTextHeading"
                         android:textSize="17sp"
                         android:onClick="onClickAdd"
-                        app:layout_constraintBottom_toBottomOf="@id/dishLogo"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintTop_toBottomOf="@id/cardText2"
                         app:layout_constraintStart_toStartOf="@id/cardText2" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
@@ -141,19 +129,26 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_gravity="left"
-                    android:text="Resep Yang Orang Lain Bagikan"
+                    android:text="Rekomendasi Untukmu"
                     android:fontFamily="@font/raleway_bold"
                     android:textColor="@color/brownText"
                     android:textSize="20sp"
                     android:layout_marginLeft="30dp"/>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvResep"
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vpRecommended"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="20dp"/>
+
+                <LinearLayout
+                    android:id="@+id/dotsRecommended"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:paddingBottom="20dp"
-                    android:nestedScrollingEnabled="false"/>
+                    android:layout_marginTop="12dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:orientation="horizontal"/>
+
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

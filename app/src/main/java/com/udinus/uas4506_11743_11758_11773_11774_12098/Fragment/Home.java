@@ -1,47 +1,95 @@
 package com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
+import android.os.Handler;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.firebase.firestore.auth.User;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.Activity.AddResep;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Activity.MainActivity;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Adapter.ResepAdapter;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.Resep;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Home extends Fragment {
 
-    private RecyclerView rvResep;
-    private RecyclerView.Adapter rvResepAdapter;
+    private Handler slideHandler = new Handler();
+    private ResepAdapter resepAdapter;
+    private ViewPager2 vpRecommended;
+
     ArrayList<Resep> arrayResep = new ArrayList<>();
+    private LinearLayout dotsIndicator;
 
     private View listResepView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        setItemResep();
 
         // Binding
         listResepView = inflater.inflate(R.layout.fragment_home,container,false);
-        rvResep = listResepView.findViewById(R.id.rvResep);
+        vpRecommended = listResepView.findViewById(R.id.vpRecommended);
 
-        rvResep.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        rvResepAdapter = new ResepAdapter(arrayResep, getActivity());
-        rvResep.setAdapter(rvResepAdapter);
+        setItemResep();
+        setVpRecommended();
 
         return listResepView;
+    }
+
+    private void setVpRecommended(){
+        vpRecommended.setAdapter(new ResepAdapter(arrayResep,getActivity(),vpRecommended));
+        vpRecommended.setClipToPadding(false);
+        vpRecommended.setClipChildren(false);
+        vpRecommended.setOffscreenPageLimit(3);
+        vpRecommended.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_ALWAYS);
+
+        vpRecommended.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                slideHandler.removeCallbacks(sliderRunnable);
+                slideHandler.postDelayed(sliderRunnable,3500);
+            }
+        });
+    }
+
+    private Runnable sliderRunnable = new Runnable() {
+        @Override
+        public void run() {
+            vpRecommended.setCurrentItem(vpRecommended.getCurrentItem()+1);
+        }
+    };
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        slideHandler.removeCallbacks(sliderRunnable);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        slideHandler.postDelayed(sliderRunnable,2500);
     }
 
     private void setItemResep(){
