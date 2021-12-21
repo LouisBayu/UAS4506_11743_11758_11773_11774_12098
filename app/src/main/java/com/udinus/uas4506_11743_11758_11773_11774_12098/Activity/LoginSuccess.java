@@ -29,7 +29,7 @@ public class LoginSuccess extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(LoginSuccess.this, Home.class);
+                Intent i = new Intent(LoginSuccess.this, MainActivity.class);
                 startActivity(i);
                 finish();
             }

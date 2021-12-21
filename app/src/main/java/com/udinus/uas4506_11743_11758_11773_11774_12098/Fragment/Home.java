@@ -1,56 +1,47 @@
-package com.udinus.uas4506_11743_11758_11773_11774_12098.Activity;
+package com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment;
 
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
+import com.google.firebase.firestore.auth.User;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.Activity.MainActivity;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Adapter.ResepAdapter;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.Resep;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
 import java.util.ArrayList;
 
-public class Home extends AppCompatActivity {
+public class Home extends Fragment {
 
+    private RecyclerView rvResep;
+    private RecyclerView.Adapter rvResepAdapter;
     ArrayList<Resep> arrayResep = new ArrayList<>();
-    RecyclerView resepRecycler;
-    RecyclerView.Adapter adapterResep;
+
+    private View listResepView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        if (Build.VERSION.SDK_INT >= 21) {
-            Window window = this.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(this.getResources().getColor(R.color.bg));
-        }
-
-        // Recent Recycler
-        resepRecycler = findViewById(R.id.resepRecycler);
-        resepRecycler.setHasFixedSize(true);
-        resepRecycler.setLayoutManager(new LinearLayoutManager(this));
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         setItemResep();
-        adapterResep = new ResepAdapter(arrayResep, this);
-        resepRecycler.setAdapter(adapterResep);
 
+        // Binding
+        listResepView = inflater.inflate(R.layout.fragment_home,container,false);
+        rvResep = listResepView.findViewById(R.id.rvResep);
 
-    }
+        rvResep.setLayoutManager(new LinearLayoutManager(getContext()));
 
-    public void onClickAdd(View view){
-        Intent i = new Intent(this, AddResep.class);
-        startActivity(i);
+        rvResepAdapter = new ResepAdapter(arrayResep, getActivity());
+        rvResep.setAdapter(rvResepAdapter);
+
+        return listResepView;
     }
 
     private void setItemResep(){
@@ -392,4 +383,5 @@ public class Home extends AppCompatActivity {
         arrayResep.add(garangAsemAyam);
 
     }
+
 }
