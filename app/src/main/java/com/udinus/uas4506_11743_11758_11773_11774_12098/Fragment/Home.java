@@ -3,6 +3,7 @@ package com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +20,11 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.auth.User;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Activity.AddResep;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Activity.MainActivity;
@@ -54,6 +60,8 @@ public class Home extends Fragment {
         setVpRecommended();
 
         return listResepView;
+
+
     }
 
     private void setVpRecommended(){

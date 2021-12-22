@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
@@ -15,6 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
 public class ResetPassword extends AppCompatActivity {
@@ -22,7 +25,12 @@ public class ResetPassword extends AppCompatActivity {
     Boolean isPasswordVisible = false;
     TextInputEditText editTextNewPassword;
     TextInputEditText editTextConfirmPassword;
+    TextInputEditText editTextPhone;
     TextView textShowPassword;
+
+    String _NEWPASSWORD, _CONFIRMPASSWORD, _PHONE;
+
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,23 +44,58 @@ public class ResetPassword extends AppCompatActivity {
             window.setStatusBarColor(this.getResources().getColor(R.color.bg));
         }
 
+        reference = FirebaseDatabase.getInstance().getReference("users");
+
         editTextNewPassword = findViewById(R.id.newPasswordEditText);
         editTextConfirmPassword = findViewById(R.id.confirmPasswordEditText);
         textShowPassword = findViewById(R.id.showPassword);
+        editTextPhone = findViewById(R.id.phoneEditText);
+
+        showAllUserData();
 
     }
 
+    private void showAllUserData(){
+        Intent intent = getIntent();
+        _NEWPASSWORD = intent.getStringExtra("password");
+        _CONFIRMPASSWORD = intent.getStringExtra("password");
+        _PHONE = intent.getStringExtra("phone");
+
+        editTextNewPassword.setText(_NEWPASSWORD);
+        editTextConfirmPassword.setText(_CONFIRMPASSWORD);
+        editTextPhone.setText(_PHONE);
+    }
+
     public void onClickChange(View view) {
-        // Validasi Inputan Confirm & New
-        if (TextUtils.isEmpty(editTextNewPassword.getText().toString().trim())
-            || TextUtils.isEmpty(editTextConfirmPassword.getText().toString().trim())){
-            Toast.makeText(view.getContext(), "Inputan Tidak Boleh Kosong!", Toast.LENGTH_SHORT).show();
-        } else if (!editTextNewPassword.getText().toString().equals(editTextConfirmPassword.getText().toString())){
-            Toast.makeText(view.getContext(), "New dan Confirm Password Harus Sama!", Toast.LENGTH_SHORT).show();
-        } else {
+        if (isPasswordChanged()) {
+            Toast.makeText(this, "Data terubah", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(this, "Data gagal terubah", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(ResetPassword.this, ResetPasswordSuccess.class);
             startActivity(i);
             finish();
+        }
+//        // Validasi Inputan Confirm & New
+//        if (TextUtils.isEmpty(editTextNewPassword.getText().toString().trim())
+//            || TextUtils.isEmpty(editTextConfirmPassword.getText().toString().trim())){
+//            Toast.makeText(view.getContext(), "Inputan Tidak Boleh Kosong!", Toast.LENGTH_SHORT).show();
+//        } else if (!editTextNewPassword.getText().toString().equals(editTextConfirmPassword.getText().toString())){
+//            Toast.makeText(view.getContext(), "New dan Confirm Password Harus Sama!", Toast.LENGTH_SHORT).show();
+//        } else {
+//            Intent i = new Intent(ResetPassword.this, ResetPasswordSuccess.class);
+//            startActivity(i);
+//            finish();
+//        }
+    }
+
+    private boolean isPasswordChanged(){
+        if (!_NEWPASSWORD.equals(editTextNewPassword.getText().toString())) {
+            reference.child(_PHONE).child("password").setValue(editTextPhone.getText().toString());
+            _NEWPASSWORD = editTextNewPassword.getText().toString();
+            return true;
+        }else {
+            return false;
         }
     }
 
