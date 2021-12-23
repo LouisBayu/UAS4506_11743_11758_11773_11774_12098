@@ -104,7 +104,7 @@
 
         <ProgressBar
             android:id="@+id/progressbarSend"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"

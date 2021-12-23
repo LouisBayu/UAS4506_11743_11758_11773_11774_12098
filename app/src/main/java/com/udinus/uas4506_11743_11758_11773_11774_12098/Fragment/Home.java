@@ -64,7 +64,7 @@ public class Home extends Fragment {
 
     private void greeting(){
         String email = sharedPreferences.getString("key_email", null);
-        System.out.println(email);
+        System.out.println("-----------------"+ email);
         Query getUserData = dbReference.orderByChild("email").equalTo(email);
 
         getUserData.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -82,8 +82,6 @@ public class Home extends Fragment {
 
             }
         });
-
-
 
     }
 

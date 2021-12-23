@@ -3,7 +3,9 @@ package com.udinus.uas4506_11743_11758_11773_11774_12098.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -35,6 +37,7 @@ public class WelcomebackLogin extends AppCompatActivity {
     FirebaseDatabase rootNode;
     DatabaseReference reference;
     FirebaseAuth mAuth;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +54,14 @@ public class WelcomebackLogin extends AppCompatActivity {
         // Binding Edit Text
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
+        sharedPreferences = getSharedPreferences("appSharedPref", Context.MODE_PRIVATE);
 
+    }
+
+    private void saveEmailToSP(){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("key_email",emailEditText.getText().toString().trim());
+        editor.apply();
     }
 
     public void onClickLogin(View view){
@@ -78,37 +88,14 @@ public class WelcomebackLogin extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
                         Intent i = new Intent(WelcomebackLogin.this, LoginSuccess.class);
-                            startActivity(i);
-                            finish();
+                        saveEmailToSP();
+                        startActivity(i);
+                        finish();
                     }else {
-                        Toast.makeText(WelcomebackLogin.this, "Log in Error" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(WelcomebackLogin.this, "Log in Error : " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
             });
-
-//            Query check_email = reference.orderByChild("email").equalTo(email);
-//
-//            check_email.addListenerForSingleValueEvent(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                    if (snapshot.exists()){
-//                        String passwordcheck = snapshot.child(email).child("password").getValue(String.class);
-//                        if (passwordcheck.equals(password)){
-//                            Intent i = new Intent(WelcomebackLogin.this, LoginSuccess.class);
-//                            startActivity(i);
-//                            finish();
-//                        }else {
-//                            Toast.makeText(view.getContext(), "Password Salah", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }else {
-//                        Toast.makeText(view.getContext(), "Email Tidak Terdaftar", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//                }
-//            });
         }
     }
 

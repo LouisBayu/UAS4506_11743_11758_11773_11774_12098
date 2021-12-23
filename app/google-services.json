@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "371397187374-rr49ojpdb91it1en6opblqdpmloaj3l2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.udinus.uas4506_11743_11758_11773_11774_12098",
+            "certificate_hash": "61c8d0a9c8fc3b4fd8c0101f86b7c64b477a8012"
+          }
+        },
+        {
           "client_id": "371397187374-ctrh9t730v7jpebf3ifupbal9b6ekhbv.apps.googleusercontent.com",
           "client_type": 3
         }
