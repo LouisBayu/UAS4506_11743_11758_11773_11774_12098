@@ -89,7 +89,7 @@ public class Register extends AppCompatActivity {
                         startActivity(i);
                         finish();
                     }else {
-                        Toast.makeText(Register.this, "Registrasi Gagal" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(Register.this, "Registrasi Gagal : " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
             });

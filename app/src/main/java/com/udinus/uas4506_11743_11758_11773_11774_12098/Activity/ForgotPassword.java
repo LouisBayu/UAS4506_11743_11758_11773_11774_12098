@@ -1,7 +1,5 @@
 package com.udinus.uas4506_11743_11758_11773_11774_12098.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,27 +8,16 @@ import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.FirebaseAuthException;
-import com.google.firebase.auth.PhoneAuthProvider;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.databinding.ActivityMainBinding;
 
 public class ForgotPassword extends AppCompatActivity {
 
-    public TextInputEditText phoneEditText;
-
-    public ActivityMainBinding binding;
-
-    public PhoneAuthProvider.ForceResendingToken forceResendingToken;
-    public PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
-
-    public String mVerificationId;
+    TextInputEditText editTextEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +31,7 @@ public class ForgotPassword extends AppCompatActivity {
             window.setStatusBarColor(this.getResources().getColor(R.color.bg));
         }
 
-        phoneEditText = findViewById(R.id.phoneEditText);
+        editTextEmail = findViewById(R.id.emailEditText);
 
     }
 
@@ -53,20 +40,20 @@ public class ForgotPassword extends AppCompatActivity {
         startActivity(i);
         finish();
     }
-
-    public void onClickSend(View view) {
-        if (TextUtils.isEmpty(phoneEditText.getText().toString().trim())){
-            Toast.makeText(view.getContext(),"No Hp Tidak Boleh Kosong!", Toast.LENGTH_SHORT).show();
+    public void onClickNext(View view) {
+        if (TextUtils.isEmpty(editTextEmail.getText().toString().trim())){
+            Toast.makeText(view.getContext(),"Email Tidak Boleh Kosong!", Toast.LENGTH_SHORT).show();
         }
-        else {
-            Intent i = new Intent(ForgotPassword.this, ResetCode.class);
+        else if (!isValidEmail(editTextEmail.getText().toString().trim())){
+            Toast.makeText(view.getContext(),"Email Tidak Valid!", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent i = new Intent(ForgotPassword.this, SendOTP.class);
             startActivity(i);
             finish();
         }
     }
-//
-//    public void verifyPhoneNumber(View view) {
-//        CheckInternet
-//    }
 
+    public static boolean isValidEmail(CharSequence email){
+        return (Patterns.EMAIL_ADDRESS.matcher(email).matches());
+    }
 }
