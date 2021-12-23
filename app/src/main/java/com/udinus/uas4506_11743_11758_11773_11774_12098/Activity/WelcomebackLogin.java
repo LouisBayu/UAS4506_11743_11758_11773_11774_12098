@@ -24,7 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.Adapter.UserHelperClass;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.UserModel;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
 import java.lang.ref.Reference;
@@ -81,10 +81,34 @@ public class WelcomebackLogin extends AppCompatActivity {
                             startActivity(i);
                             finish();
                     }else {
-                        Toast.makeText(WelcomebackLogin.this, "Log in Error : " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(WelcomebackLogin.this, "Log in Error" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
             });
+
+//            Query check_email = reference.orderByChild("email").equalTo(email);
+//
+//            check_email.addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    if (snapshot.exists()){
+//                        String passwordcheck = snapshot.child(email).child("password").getValue(String.class);
+//                        if (passwordcheck.equals(password)){
+//                            Intent i = new Intent(WelcomebackLogin.this, LoginSuccess.class);
+//                            startActivity(i);
+//                            finish();
+//                        }else {
+//                            Toast.makeText(view.getContext(), "Password Salah", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }else {
+//                        Toast.makeText(view.getContext(), "Email Tidak Terdaftar", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//                }
+//            });
         }
     }
 

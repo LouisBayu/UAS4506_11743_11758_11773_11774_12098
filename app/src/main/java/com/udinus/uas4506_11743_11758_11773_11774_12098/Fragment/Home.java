@@ -1,65 +1,88 @@
 package com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment;
 
-import android.content.Intent;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Handler;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.auth.User;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.Activity.AddResep;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.Activity.MainActivity;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Adapter.ResepAdapter;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.Resep;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.UserModel;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Home extends Fragment {
 
     private Handler slideHandler = new Handler();
-    private ResepAdapter resepAdapter;
     private ViewPager2 vpRecommended;
-
+    private View viewHome;
+    TextView tvGreeting;
+    SharedPreferences sharedPreferences;
+    FirebaseDatabase db;
+    DatabaseReference dbReference;
     ArrayList<Resep> arrayResep = new ArrayList<>();
-    private LinearLayout dotsIndicator;
-
-    private View listResepView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // Binding
-        listResepView = inflater.inflate(R.layout.fragment_home,container,false);
-        vpRecommended = listResepView.findViewById(R.id.vpRecommended);
+        viewHome = inflater.inflate(R.layout.fragment_home,container,false);
+        vpRecommended = viewHome.findViewById(R.id.vpRecommended);
+        tvGreeting = viewHome.findViewById(R.id.greetingsText);
+
+        db = FirebaseDatabase.getInstance();
+        dbReference = db.getReference("users");
+        sharedPreferences = getActivity().getSharedPreferences("appSharedPref", Context.MODE_PRIVATE);
 
         setItemResep();
         setVpRecommended();
+        greeting();
 
-        return listResepView;
+        return viewHome;
+
+
+    }
+
+    private void greeting(){
+        String email = sharedPreferences.getString("key_email", null);
+        System.out.println(email);
+        Query getUserData = dbReference.orderByChild("email").equalTo(email);
+
+        getUserData.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot x : snapshot.getChildren()){
+                    UserModel user = x.getValue(UserModel.class);
+                    tvGreeting.setText("Halo " + user.getUsername() + ",");
+                    System.out.println(user.getUsername());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
 
     }

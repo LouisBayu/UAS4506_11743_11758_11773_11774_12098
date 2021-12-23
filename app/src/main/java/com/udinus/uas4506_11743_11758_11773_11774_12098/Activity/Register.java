@@ -3,7 +3,6 @@ package com.udinus.uas4506_11743_11758_11773_11774_12098.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Adapter;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,7 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.Adapter.UserHelperClass;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.UserModel;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
 public class Register extends AppCompatActivity {
@@ -77,7 +75,7 @@ public class Register extends AppCompatActivity {
             String phone = phoneEditText.getText().toString().trim();
             String password = passwordEditText.getText().toString().trim();
 
-            UserHelperClass helperClass = new UserHelperClass(fullname, username, email, phone, password);
+            UserModel helperClass = new UserModel(fullname, username, email, phone, password);
 
             reference.child(username).setValue(helperClass);
 

@@ -1,13 +1,19 @@
-package com.udinus.uas4506_11743_11758_11773_11774_12098.Adapter;
+package com.udinus.uas4506_11743_11758_11773_11774_12098.Model;
 
-public class UserHelperClass {
+import com.google.firebase.firestore.auth.User;
+
+public class UserModel {
     String fullname, username, email, phone, password;
 
-    public UserHelperClass(String email, String password){
+    public UserModel(){
 
     }
 
-    public UserHelperClass(String fullname, String username, String email, String phone, String password){
+    public UserModel(String email, String password){
+
+    }
+
+    public UserModel(String fullname, String username, String email, String phone, String password){
         this.fullname = fullname;
         this.username = username;
         this.email = email;
@@ -19,7 +25,7 @@ public class UserHelperClass {
         return fullname;
     }
 
-    public void setFullname(String Fullname) {
+    public void setFullname(String fullname) {
         this.fullname = fullname;
     }
 
