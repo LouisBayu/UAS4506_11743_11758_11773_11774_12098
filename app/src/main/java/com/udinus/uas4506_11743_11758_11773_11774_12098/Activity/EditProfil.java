@@ -104,19 +104,21 @@ public class EditProfil extends AppCompatActivity{
     }
 
     public void updateFullName(View view){
-        setContentView(activity_update_full_name);
+        Intent i = new Intent(EditProfil.this, UpdateFullName.class);
+        startActivity(i);
+        finish();
     }
 
     public void updateEmail(View view){
-        setContentView(activity_update_email);
     }
 
     public void updatePhone(View view){
-        setContentView(activity_update_phone);
     }
 
     public void updatePassword(View view){
-        setContentView(activity_update_password);
+        Intent i = new Intent(EditProfil.this, UpdatePassword.class);
+        startActivity(i);
+        finish();
     }
 
     public void onClickHelpSupport(View view){
