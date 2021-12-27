@@ -88,7 +88,7 @@ public class ResetCode extends AppCompatActivity {
                                         if (task.isSuccessful()) {
                                             binding.progressbarVerify.setVisibility(View.VISIBLE);
                                             binding.btnVerify.setVisibility(View.INVISIBLE);
-                                            Intent intent = new Intent(ResetCode.this, ResetPasswordSuccess.class);
+                                            Intent intent = new Intent(ResetCode.this, ResetPassword.class);
                                             startActivity(intent);
                                         } else {
                                             binding.progressbarVerify.setVisibility(View.GONE);

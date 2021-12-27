@@ -20,22 +20,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="55dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
+            android:fontFamily="@font/raleway_bold"
             android:gravity="center"
             android:text="username"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+            android:textColor="@color/orangeTextHeading"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="Logout"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/raleway_bold"
             android:textSize="15dp"
-            android:textStyle="normal"/>
+            android:textColor="#C62121"
+            android:text="Logout" />
 
     </LinearLayout>
 
@@ -71,6 +75,7 @@
         android:fontFamily="@font/raleway_bold"
         android:gravity="center"
         android:text="Full Name"
+        android:textColor="@color/orangeTextHeading"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -114,22 +119,23 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="@font/raleway_medium"
-        android:gravity="center"
+        android:fontFamily="@font/raleway_bold"
+        android:gravity="left"
         android:text="Resepku"
+        android:textColor="@color/brownText"
         android:textSize="20sp" />
 
-    <View
-        android:id="@+id/line2"
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="340dp"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/resepku"
-        android:layout_marginTop="5dp"
-        android:background="@color/bgSplash" />
-
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:id="@+id/rv_resep_profil"
+        tools:listitem="@layout/grid_resep_profil">
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 </RelativeLayout>

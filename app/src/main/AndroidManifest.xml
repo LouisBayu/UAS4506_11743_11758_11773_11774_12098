@@ -13,6 +13,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activity.UpdateData"
+            android:exported="true" />
+        <activity
             android:name=".Activity.SendOTP"
             android:exported="true" />
         <activity

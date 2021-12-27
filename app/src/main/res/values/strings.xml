@@ -24,7 +24,7 @@
     <string name="have_account">Sudah Punya Akun?</string>
 
     <!--String On Forgot Steps Layout-->
-    <string name="desc_step1">Masukkan alamat email Anda untuk menerima kode OTP</string>
+    <string name="desc_step1">Masukkan alamat email Anda untuk reset password</string>
     <string name="desc_step2">Masukkan nomor telepon Anda untuk menerima kode OTP</string>
     <string name="desc_step3">Masukkan Kode OTP yang telah dikirimkan ke nomor telepon Anda</string>
     <string name="desc_step4">Atur ulang kata sandi Anda untuk login pada aplikasi ini</string>
