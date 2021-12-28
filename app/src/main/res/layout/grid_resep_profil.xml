@@ -33,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/img_resep"
                 android:orientation="vertical"
+                android:background="@color/bg"
                 android:padding="3dp">
 
                 <TextView

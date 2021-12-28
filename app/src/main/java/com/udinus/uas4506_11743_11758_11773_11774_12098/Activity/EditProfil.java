@@ -110,9 +110,15 @@ public class EditProfil extends AppCompatActivity{
     }
 
     public void updateEmail(View view){
+        Intent i = new Intent(EditProfil.this, UpdateEmail.class);
+        startActivity(i);
+        finish();
     }
 
     public void updatePhone(View view){
+        Intent i = new Intent(EditProfil.this, UpdatePhone.class);
+        startActivity(i);
+        finish();
     }
 
     public void updatePassword(View view){

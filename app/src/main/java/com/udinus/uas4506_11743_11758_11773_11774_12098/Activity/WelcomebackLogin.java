@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +29,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.UserModel;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
-
 import java.lang.ref.Reference;
 
 public class WelcomebackLogin extends AppCompatActivity {
@@ -37,6 +37,7 @@ public class WelcomebackLogin extends AppCompatActivity {
     FirebaseDatabase rootNode;
     DatabaseReference reference;
     FirebaseAuth mAuth;
+    FirebaseAuth auth;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -55,6 +56,14 @@ public class WelcomebackLogin extends AppCompatActivity {
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         sharedPreferences = getSharedPreferences("appSharedPref", Context.MODE_PRIVATE);
+
+        auth = FirebaseAuth.getInstance();
+
+        if (auth.getCurrentUser() != null){
+            Intent i = new Intent(WelcomebackLogin.this, LoginSuccess.class);
+            startActivity(i);
+            finish();
+        }
 
     }
 

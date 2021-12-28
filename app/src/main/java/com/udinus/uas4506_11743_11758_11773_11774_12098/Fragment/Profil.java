@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -48,6 +49,7 @@ public class Profil extends Fragment {
     SharedPreferences sharedPreferences;
     FirebaseDatabase db;
     DatabaseReference dbReference;
+    FirebaseAuth auth;
 
     @Nullable
     @Override
@@ -60,6 +62,8 @@ public class Profil extends Fragment {
         db = FirebaseDatabase.getInstance();
         dbReference = db.getReference("users");
         sharedPreferences = getActivity().getSharedPreferences("appSharedPref", Context.MODE_PRIVATE);
+
+        auth = FirebaseAuth.getInstance();
 
         profil();
 
@@ -93,6 +97,7 @@ public class Profil extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                auth.signOut();
                 Intent i = new Intent(getActivity(), WelcomebackLogin.class);
                 startActivity(i);
                 getActivity().finish();
