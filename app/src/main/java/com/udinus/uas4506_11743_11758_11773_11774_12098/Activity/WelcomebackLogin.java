@@ -59,12 +59,6 @@ public class WelcomebackLogin extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-        if (auth.getCurrentUser() != null){
-            Intent i = new Intent(WelcomebackLogin.this, LoginSuccess.class);
-            startActivity(i);
-            finish();
-        }
-
     }
 
     private void saveEmailToSP(){

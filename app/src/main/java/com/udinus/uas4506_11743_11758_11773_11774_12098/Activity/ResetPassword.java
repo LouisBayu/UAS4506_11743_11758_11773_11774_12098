@@ -1,8 +1,11 @@
 package com.udinus.uas4506_11743_11758_11773_11774_12098.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,15 +17,30 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
 public class ResetPassword extends AppCompatActivity {
 
     Boolean isPasswordVisible = false;
-    TextInputEditText editTextNewPassword;
-    TextInputEditText editTextConfirmPassword;
+    TextInputEditText editTextNewPassword, editTextConfirmPassword;
     TextView textShowPassword;
+    SharedPreferences sharedPreferences;
+    String emailReset, oldPass, username;
+    FirebaseUser user;
+    FirebaseDatabase db;
+    DatabaseReference dbReference;
+    FirebaseAuth auth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +54,60 @@ public class ResetPassword extends AppCompatActivity {
             window.setStatusBarColor(this.getResources().getColor(R.color.bg));
         }
 
+        initComponent();
+
+    }
+
+    private void initComponent(){
         editTextNewPassword = findViewById(R.id.newPasswordEditText);
         editTextConfirmPassword = findViewById(R.id.confirmPasswordEditText);
         textShowPassword = findViewById(R.id.showPassword);
 
+        sharedPreferences = getSharedPreferences("appSharedPref", Context.MODE_PRIVATE);
+        emailReset = sharedPreferences.getString("key_email_reset", null);
+        oldPass = sharedPreferences.getString("key_old_password", null);
+        username = sharedPreferences.getString("key_username", null);
+
+        System.out.println(emailReset + oldPass + username);
+
+        db = FirebaseDatabase.getInstance();
+        dbReference = db.getReference("users");
+        auth = FirebaseAuth.getInstance();
+        auth.signInWithEmailAndPassword(emailReset,oldPass);
+        user = auth.getCurrentUser();
+
+
     }
+
+//    private void changePassword(){
+//        String newPass = editTextNewPassword.getText().toString();
+//        AuthCredential credential = EmailAuthProvider.getCredential(emailReset,oldPass);
+//        user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                if (task.isSuccessful()){
+//                    user.updatePassword(newPass).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Void> task) {
+//                            if (!task.isSuccessful()){
+//                                Toast.makeText(getApplicationContext(), "GAGAL!", Toast.LENGTH_SHORT).show();
+//                            } else {
+//                                dbReference.child(username).child("password").setValue(newPass);
+//                                Toast.makeText(getApplicationContext(), "SUKSES!", Toast.LENGTH_SHORT).show();
+//                                FirebaseAuth.getInstance().signOut();
+//                                // Change password value
+////                                Intent i = new Intent(ResetPassword.this, ResetPasswordSuccess.class);
+////                                startActivity(i);
+////                                finish();
+//                            }
+//                        }
+//                    });
+//                } else {
+//                    System.out.println("Auth Gagal : " + task.getException().getMessage());
+//                }
+//            }
+//        });
+//    }
 
     public void onClickChange(View view) {
         // Validasi Inputan Confirm & New
@@ -50,9 +117,23 @@ public class ResetPassword extends AppCompatActivity {
         } else if (!editTextNewPassword.getText().toString().equals(editTextConfirmPassword.getText().toString())){
             Toast.makeText(view.getContext(), "New dan Confirm Password Harus Sama!", Toast.LENGTH_SHORT).show();
         } else {
-            Intent i = new Intent(ResetPassword.this, ResetPasswordSuccess.class);
-            startActivity(i);
-            finish();
+//            changePassword();
+            String newPass = editTextNewPassword.getText().toString();
+            user.updatePassword(newPass).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (!task.isSuccessful()){
+                        Toast.makeText(getApplicationContext(), "GAGAL!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // Change Password
+                        dbReference.child(username).child("password").setValue(newPass);
+                        Toast.makeText(getApplicationContext(), "SUKSES!", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(ResetPassword.this, ResetPasswordSuccess.class);
+                        startActivity(i);
+                        finish();
+                    }
+                }
+            });
         }
     }
 
