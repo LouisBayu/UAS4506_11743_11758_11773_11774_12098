@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 import androidx.fragment.app.Fragment;
 
@@ -24,9 +25,9 @@ public class Add extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_add, container, false);
 
-        Button btn;
+        FrameLayout btn;
 
-        btn = view.findViewById(R.id.test);
+        btn = view.findViewById(R.id.frameResep);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -89,7 +89,7 @@ public class Profil extends Fragment {
         logout = view.findViewById(R.id.logout);
         btnEditProfil.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent i = new Intent(getActivity(), EditProfil.class);
                 startActivity(i);
             }

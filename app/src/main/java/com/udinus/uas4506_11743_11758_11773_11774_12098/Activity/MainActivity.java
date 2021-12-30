@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -25,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,15 +35,9 @@ public class MainActivity extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.bg));
         }
-        initComponent();
-        loadFragment(new Home());
-
-    }
-
-    private void initComponent(){
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-
+        loadFragment(new Home());
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -99,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void loadFragment(Fragment fragment){
         // Load Fragment
         getSupportFragmentManager()

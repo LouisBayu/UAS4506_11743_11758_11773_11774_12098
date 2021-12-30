@@ -1,24 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.Home"
-    android:background="#200000">
+    android:background="@color/bg">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/logo_resep"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Halaman Tambah"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="@color/white"/>
+        android:layout_height="300dp"
+        android:layout_marginTop="70dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/resep" />
 
-    <Button
-        android:id="@+id/test"
-        android:layout_width="100dp"
-        android:layout_height="100dp"/>
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo_resep"
+        android:layout_centerHorizontal="true"
+        android:text="Tambah resep baru?"
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:fontFamily="@font/raleway"
+        android:textStyle="bold"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:fontFamily="@font/raleway_medium"
+        android:text="Bagikan inspirasi masakan Anda"
+        android:textSize="20sp" />
+
+    <FrameLayout
+        android:id="@+id/frameResep"
+        android:layout_width="110dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/text2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_btn_resep_corner"
+        android:onClick="klikTambahResep">
+
+        <ImageView
+            android:id="@+id/imgResep2"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/btnresep" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="10dp"
+            android:text="Resep"
+            android:textSize="18sp" />
+
+    </FrameLayout>
+
+
+
+</RelativeLayout>
