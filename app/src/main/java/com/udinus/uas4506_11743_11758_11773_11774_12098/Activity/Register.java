@@ -3,9 +3,7 @@ package com.udinus.uas4506_11743_11758_11773_11774_12098.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -36,8 +34,6 @@ public class Register extends AppCompatActivity {
     FirebaseDatabase rootNode;
     DatabaseReference reference;
     FirebaseAuth mAuth;
-    SharedPreferences sharedPreferences;
-    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,15 +53,6 @@ public class Register extends AppCompatActivity {
         phoneEditText = findViewById(R.id.phoneEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
 
-        sharedPreferences = getSharedPreferences("appSharedPref", Context.MODE_PRIVATE);
-        auth = FirebaseAuth.getInstance();
-
-    }
-
-    private void saveUsernameToSP(){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("key_username",usernameEditText.getText().toString().trim());
-        editor.apply();
     }
 
     public void onClickRegister(View view){
@@ -97,7 +84,6 @@ public class Register extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
                         Intent i = new Intent(Register.this, RegisterSuccess.class);
-                        saveUsernameToSP();
                         startActivity(i);
                         finish();
                     }else {
