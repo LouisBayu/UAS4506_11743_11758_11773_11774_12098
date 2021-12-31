@@ -24,13 +24,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/logo_resep"
         android:layout_centerHorizontal="true"
-        android:text="Tambah resep baru?"
-        android:textSize="25sp"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        android:fontFamily="@font/raleway"
-        android:textStyle="bold"/>
+        android:fontFamily="@font/raleway_bold"
+        android:textColor="@color/orangeTextHeading"
+        android:text="Tambah resep baru?"
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/text2"
@@ -42,43 +42,23 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:fontFamily="@font/raleway_medium"
+        android:textColor="@color/orangeTextHeading"
         android:text="Bagikan inspirasi masakan Anda"
         android:textSize="20sp" />
 
-    <FrameLayout
-        android:id="@+id/frameResep"
-        android:layout_width="110dp"
-        android:layout_height="40dp"
-        android:layout_below="@id/text2"
+    <com.google.android.material.button.MaterialButton
+        app:cornerRadius="10dp"
+        android:id="@+id/buttonAddResep"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/bg_btn_resep_corner"
-        android:onClick="klikTambahResep">
-
-        <ImageView
-            android:id="@+id/imgResep2"
-            android:layout_width="30dp"
-            android:layout_height="20dp"
-            android:layout_gravity="left"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/btnresep" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginRight="12dp"
-            android:layout_marginBottom="10dp"
-            android:text="Resep"
-            android:textSize="18sp" />
-
-    </FrameLayout>
-
-
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/text2"
+        android:drawableLeft="@drawable/ic_add_resep"
+        android:text="Tambah Resep"
+        android:fontFamily="@font/raleway_bold"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textColor="@color/white"/>
 
 </RelativeLayout>

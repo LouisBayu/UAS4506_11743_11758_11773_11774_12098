@@ -13,7 +13,16 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Activity.UpdateFullName"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.UpdateEmail"
+            android:exported="true" />
+        <activity
             android:name=".Activity.UpdatePassword"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.UpdatePhone"
             android:exported="true" />
         <activity
             android:name=".Activity.SendOTP"

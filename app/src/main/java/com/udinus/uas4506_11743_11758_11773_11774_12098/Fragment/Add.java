@@ -27,7 +27,7 @@ public class Add extends Fragment {
 
         FrameLayout btn;
 
-        btn = view.findViewById(R.id.frameResep);
+        btn = view.findViewById(R.id.buttonAddResep);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

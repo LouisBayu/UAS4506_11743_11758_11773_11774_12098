@@ -38,7 +38,7 @@ public class EditProfil extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(activity_edit_profil);
+        setContentView(R.layout.activity_edit_profil);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         if (Build.VERSION.SDK_INT >= 21) {
             Window window = this.getWindow();

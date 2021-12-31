@@ -75,6 +75,7 @@ public class UpdatePassword extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     public void updatePassword(String currentPassword, String newPassword){

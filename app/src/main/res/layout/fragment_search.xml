@@ -23,7 +23,6 @@
     </androidx.appcompat.widget.SearchView>
 
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cardAsk"
         android:layout_width="match_parent"
