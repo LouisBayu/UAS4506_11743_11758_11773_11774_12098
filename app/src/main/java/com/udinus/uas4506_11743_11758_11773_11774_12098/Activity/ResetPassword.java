@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthCredential;
@@ -73,41 +74,17 @@ public class ResetPassword extends AppCompatActivity {
         db = FirebaseDatabase.getInstance();
         dbReference = db.getReference("users");
         auth = FirebaseAuth.getInstance();
-        auth.signInWithEmailAndPassword(emailReset,oldPass);
-        user = auth.getCurrentUser();
-
-
+        auth.signInWithEmailAndPassword(emailReset,oldPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    user = auth.getCurrentUser();
+                } else {
+                    Toast.makeText(getApplicationContext(),task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
-
-//    private void changePassword(){
-//        String newPass = editTextNewPassword.getText().toString();
-//        AuthCredential credential = EmailAuthProvider.getCredential(emailReset,oldPass);
-//        user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//                if (task.isSuccessful()){
-//                    user.updatePassword(newPass).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            if (!task.isSuccessful()){
-//                                Toast.makeText(getApplicationContext(), "GAGAL!", Toast.LENGTH_SHORT).show();
-//                            } else {
-//                                dbReference.child(username).child("password").setValue(newPass);
-//                                Toast.makeText(getApplicationContext(), "SUKSES!", Toast.LENGTH_SHORT).show();
-//                                FirebaseAuth.getInstance().signOut();
-//                                // Change password value
-////                                Intent i = new Intent(ResetPassword.this, ResetPasswordSuccess.class);
-////                                startActivity(i);
-////                                finish();
-//                            }
-//                        }
-//                    });
-//                } else {
-//                    System.out.println("Auth Gagal : " + task.getException().getMessage());
-//                }
-//            }
-//        });
-//    }
 
     public void onClickChange(View view) {
         // Validasi Inputan Confirm & New
@@ -117,23 +94,27 @@ public class ResetPassword extends AppCompatActivity {
         } else if (!editTextNewPassword.getText().toString().equals(editTextConfirmPassword.getText().toString())){
             Toast.makeText(view.getContext(), "New dan Confirm Password Harus Sama!", Toast.LENGTH_SHORT).show();
         } else {
-//            changePassword();
             String newPass = editTextNewPassword.getText().toString();
             System.out.println(newPass);
             user.updatePassword(newPass).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (!task.isSuccessful()){
-                        Toast.makeText(getApplicationContext(), "GAGAL!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Reset Password Gagal!", Toast.LENGTH_SHORT).show();
                     } else {
                         // Change Password
                         dbReference.child(username).child("password").setValue(newPass);
-                        Toast.makeText(getApplicationContext(), "SUKSES!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Reset Password Sukses!", Toast.LENGTH_SHORT).show();
                         auth.signOut();
                         Intent i = new Intent(ResetPassword.this, ResetPasswordSuccess.class);
                         startActivity(i);
                         finish();
                     }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(ResetPassword.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
