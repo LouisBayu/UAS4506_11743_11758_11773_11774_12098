@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.button.MaterialButton;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Activity.AddResep;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
@@ -18,6 +19,7 @@ import javax.annotation.Nullable;
 public class Add extends Fragment {
 
     View view;
+    MaterialButton btn;
 
     @Nullable
     @Override
@@ -25,7 +27,7 @@ public class Add extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_add, container, false);
 
-        FrameLayout btn;
+
 
         btn = view.findViewById(R.id.buttonAddResep);
         btn.setOnClickListener(new View.OnClickListener() {

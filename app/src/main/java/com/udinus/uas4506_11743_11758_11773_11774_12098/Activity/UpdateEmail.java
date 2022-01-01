@@ -82,6 +82,12 @@ public class UpdateEmail extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 dbReference.child(username).child("email").setValue(email);
+
+                //Save New Email to SP
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("key_email",email);
+                editor.apply();
+
                 Toast.makeText(UpdateEmail.this, "Email berhasil diganti", Toast.LENGTH_SHORT).show();
                 finish();
             }
