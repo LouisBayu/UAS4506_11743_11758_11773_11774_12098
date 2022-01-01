@@ -119,6 +119,7 @@ public class ResetPassword extends AppCompatActivity {
         } else {
 //            changePassword();
             String newPass = editTextNewPassword.getText().toString();
+            System.out.println(newPass);
             user.updatePassword(newPass).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
@@ -128,6 +129,7 @@ public class ResetPassword extends AppCompatActivity {
                         // Change Password
                         dbReference.child(username).child("password").setValue(newPass);
                         Toast.makeText(getApplicationContext(), "SUKSES!", Toast.LENGTH_SHORT).show();
+                        auth.signOut();
                         Intent i = new Intent(ResetPassword.this, ResetPasswordSuccess.class);
                         startActivity(i);
                         finish();

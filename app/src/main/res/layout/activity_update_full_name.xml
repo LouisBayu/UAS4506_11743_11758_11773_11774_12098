@@ -33,7 +33,9 @@
         android:fontFamily="@font/raleway_bold"
         android:text="Save"
         android:textColor="@color/orangeTextHeading"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:onClick="onClickSave"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"

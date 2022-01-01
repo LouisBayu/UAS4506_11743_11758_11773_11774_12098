@@ -2,6 +2,7 @@ package com.udinus.uas4506_11743_11758_11773_11774_12098.Activity;
 
 import static com.udinus.uas4506_11743_11758_11773_11774_12098.R.layout.*;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -50,6 +51,12 @@ public class EditProfil extends AppCompatActivity{
         getDataUser();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getDataUser();
+    }
+
     private void initComponent(){
         edtEmail = findViewById(R.id.edtEmail);
         edtFullname = findViewById(R.id.edtFullName);
@@ -74,6 +81,11 @@ public class EditProfil extends AppCompatActivity{
                     for (DataSnapshot x : snapshot.getChildren()){
                         user = x.getValue(UserModel.class);
                         setDataToEditText();
+
+                        // save username to SP
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("key_username",user.getUsername());
+                        editor.apply();
                     }
                 }
             }
@@ -97,6 +109,7 @@ public class EditProfil extends AppCompatActivity{
         Intent i = new Intent(EditProfil.this, Profil.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();
+        setResult(Activity.RESULT_OK);
     }
 
     public void onClikUbahPhoto(View view){
@@ -106,25 +119,21 @@ public class EditProfil extends AppCompatActivity{
     public void updateFullName(View view){
         Intent i = new Intent(EditProfil.this, UpdateFullName.class);
         startActivity(i);
-        finish();
     }
 
     public void updateEmail(View view){
         Intent i = new Intent(EditProfil.this, UpdateEmail.class);
         startActivity(i);
-        finish();
     }
 
     public void updatePhone(View view){
         Intent i = new Intent(EditProfil.this, UpdatePhone.class);
         startActivity(i);
-        finish();
     }
 
     public void updatePassword(View view){
         Intent i = new Intent(EditProfil.this, UpdatePassword.class);
         startActivity(i);
-        finish();
     }
 
     public void onClickHelpSupport(View view){

@@ -1,6 +1,8 @@
 package com.udinus.uas4506_11743_11758_11773_11774_12098.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -23,14 +25,19 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
 public class UpdateEmail extends AppCompatActivity {
 
     TextInputEditText emailEditText;
     TextView changeEmail;
-    FirebaseAuth.AuthStateListener authListener;
     FirebaseAuth auth;
+    SharedPreferences sharedPreferences;
+    String username;
+    FirebaseDatabase db;
+    DatabaseReference dbReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,40 +50,51 @@ public class UpdateEmail extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.bg));
         }
+        initComponent();
 
-        auth = FirebaseAuth.getInstance();
 
+    }
+
+    private void initComponent(){
         emailEditText = findViewById(R.id.emailEditText);
         changeEmail = findViewById(R.id.changeEmail);
 
         changeEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                String email = emailEditText.getText().toString();
+                updateEmail();
+            }
+        });
 
-                user.updateEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(UpdateEmail.this, "Email berhasil diganti", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(UpdateEmail.this, EditProfil.class);
-                        startActivity(i);
-                        finish();
-                    }
+        sharedPreferences = getSharedPreferences("appSharedPref", Context.MODE_PRIVATE);
+        username = sharedPreferences.getString("key_username",null);
 
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(UpdateEmail.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+        db = FirebaseDatabase.getInstance();
+        dbReference = db.getReference("users");
+        auth = FirebaseAuth.getInstance();
+    }
+
+    private void updateEmail(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String email = emailEditText.getText().toString();
+
+        user.updateEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                dbReference.child(username).child("email").setValue(email);
+                Toast.makeText(UpdateEmail.this, "Email berhasil diganti", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(UpdateEmail.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     public void cancelUpdate(View view) {
-        Intent i = new Intent(UpdateEmail.this, EditProfil.class);
-        startActivity(i);
         finish();
     }
 }

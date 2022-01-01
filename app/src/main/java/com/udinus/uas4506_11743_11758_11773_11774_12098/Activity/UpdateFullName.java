@@ -20,20 +20,19 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.Activity.Register;
-
-import java.util.HashMap;
 
 public class UpdateFullName extends AppCompatActivity {
 
     TextInputEditText fullnameEditText;
     TextView changeFullName;
-    DatabaseReference databaseReference;
     SharedPreferences sharedPreferences;
+    String username;
+    FirebaseDatabase db;
+    DatabaseReference dbReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +45,37 @@ public class UpdateFullName extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.bg));
         }
+        initComponent();
+
 
     }
 
+    private void initComponent(){
+        fullnameEditText = findViewById(R.id.fullnameEditText);
+        changeFullName = findViewById(R.id.changeFullName);
+
+        sharedPreferences = getSharedPreferences("appSharedPref", Context.MODE_PRIVATE);
+        username = sharedPreferences.getString("key_username", null);
+        db = FirebaseDatabase.getInstance();
+        dbReference = db.getReference("users");
+    }
+
+    public void onClickSave(View view){
+        String newFullname = fullnameEditText.getText().toString().trim();
+        dbReference.child(username).child("fullname").setValue(newFullname).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(getApplicationContext(),"Data Berhasil Di Update!",Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Update Gagal : "+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
     public void cancelUpdate(View view) {
-        Intent i = new Intent(UpdateFullName.this, EditProfil.class);
-        startActivity(i);
         finish();
     }
 

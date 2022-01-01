@@ -102,7 +102,6 @@ public class ForgotPassword extends AppCompatActivity {
 
     private final void saveOldPasswordToSP(String email){
         Query getUserData = dbReference.orderByChild("email").equalTo(email);
-        ArrayList<String> temp = new ArrayList<>();
         getUserData.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

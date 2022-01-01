@@ -1,5 +1,6 @@
 package com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -65,7 +67,7 @@ public class Profil extends Fragment {
 
         auth = FirebaseAuth.getInstance();
 
-        profil();
+        getDataProfil();
 
         recyclerView = view.findViewById(R.id.rv_resep_profil);
         recyclerView.setHasFixedSize(true);
@@ -106,7 +108,7 @@ public class Profil extends Fragment {
         return view;
     }
 
-    private void profil(){
+    private void getDataProfil(){
         String email = sharedPreferences.getString("key_email", null);
         Query getUserData = dbReference.orderByChild("email").equalTo(email);
 

@@ -3,7 +3,9 @@ package com.udinus.uas4506_11743_11758_11773_11774_12098.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -24,6 +26,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
@@ -32,6 +35,10 @@ public class UpdatePassword extends AppCompatActivity {
     Boolean isPasswordVisible = false;
     TextInputEditText editTextCurrentPassword, editTextNewPassword, editTextConfirmPassword;
     TextView textShowPassword, changePassword;
+    SharedPreferences sharedPreferences;
+    String username;
+    FirebaseDatabase db;
+    DatabaseReference dbReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +52,23 @@ public class UpdatePassword extends AppCompatActivity {
             window.setStatusBarColor(this.getResources().getColor(R.color.bg));
         }
 
+        initComponent();
+
+
+    }
+
+    private void initComponent(){
         editTextCurrentPassword = findViewById(R.id.currentPasswordEditText);
         editTextNewPassword = findViewById(R.id.newPasswordEditText);
         editTextConfirmPassword = findViewById(R.id.confirmPasswordEditText);
         textShowPassword = findViewById(R.id.showPassword);
         changePassword = findViewById(R.id.changePassword);
+
+        sharedPreferences = getSharedPreferences("appSharedPref", Context.MODE_PRIVATE);
+        username = sharedPreferences.getString("key_username",null);
+
+        db = FirebaseDatabase.getInstance();
+        dbReference = db.getReference("users");
 
         changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +94,6 @@ public class UpdatePassword extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     public void updatePassword(String currentPassword, String newPassword){
@@ -88,9 +106,8 @@ public class UpdatePassword extends AppCompatActivity {
                 user.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+                        dbReference.child(username).child("password").setValue(newPassword);
                         Toast.makeText(UpdatePassword.this, "Password berhasil diganti", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(UpdatePassword.this, EditProfil.class);
-                        startActivity(i);
                         finish();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -110,8 +127,6 @@ public class UpdatePassword extends AppCompatActivity {
 
 
     public void cancelUpdate(View view) {
-        Intent i = new Intent(UpdatePassword.this, EditProfil.class);
-        startActivity(i);
         finish();
     }
 
