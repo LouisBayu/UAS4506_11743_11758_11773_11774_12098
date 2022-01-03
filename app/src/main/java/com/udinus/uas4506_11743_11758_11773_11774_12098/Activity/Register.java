@@ -94,8 +94,7 @@ public class Register extends AppCompatActivity {
         }
     }
     public void onClickLogin(View view){
-        Intent i = new Intent(Register.this, WelcomebackLogin.class);
-        startActivity(i);
+        finish();
     }
 
     public static boolean isValidEmail(CharSequence email){

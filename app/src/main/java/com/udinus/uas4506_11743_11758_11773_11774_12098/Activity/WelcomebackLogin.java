@@ -13,10 +13,12 @@ import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +29,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment.Home;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.UserModel;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 import java.lang.ref.Reference;
@@ -37,8 +40,10 @@ public class WelcomebackLogin extends AppCompatActivity {
     FirebaseDatabase rootNode;
     DatabaseReference reference;
     FirebaseAuth mAuth;
-    FirebaseAuth auth;
+
     SharedPreferences sharedPreferences;
+    MaterialCheckBox chkRememberUsername;
+    MaterialCheckBox chkKeepLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,26 +57,60 @@ public class WelcomebackLogin extends AppCompatActivity {
             window.setStatusBarColor(this.getResources().getColor(R.color.bgSplash));
         }
 
-        // Binding Edit Text
+        initComponent();
+        loadSavedEmailForLogin();
+
+
+    }
+
+    private void initComponent(){
+        // Binding Komponen
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
+        chkKeepLogin = findViewById(R.id.chk_keep_login);
+        chkRememberUsername = findViewById(R.id.chk_remember_username);
+
         sharedPreferences = getSharedPreferences("appSharedPref", Context.MODE_PRIVATE);
 
-        auth = FirebaseAuth.getInstance();
 
-    }
-
-    private void saveEmailToSP(){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("key_email",emailEditText.getText().toString().trim());
-        editor.putString("key_current_user_password",passwordEditText.getText().toString().trim());
-        editor.apply();
-    }
-
-    public void onClickLogin(View view){
         rootNode = FirebaseDatabase.getInstance();
         reference = rootNode.getReference("users");
         mAuth = FirebaseAuth.getInstance();
+    }
+
+    private void saveUserDataToSP(){
+        String email = emailEditText.getText().toString().trim();
+        Query queryGetData = FirebaseDatabase.getInstance().getReference("users")
+                .orderByChild("email")
+                .equalTo(email);
+
+        queryGetData.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for (DataSnapshot x : snapshot.getChildren()){
+                        UserModel user = x.getValue(UserModel.class);
+
+                        // save user data to SP
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("key_email",user.getEmail());
+                        editor.putString("key_username",user.getUsername());
+                        editor.putString("key_current_user_password",user.getPassword());
+                        editor.putString("key_fullname",user.getFullname());
+                        editor.putString("key_phone",user.getPhone());
+                        editor.apply();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void onClickLogin(View view){
 //        Validasi Inputan Kosong
         if (TextUtils.isEmpty(emailEditText.getText().toString().trim())
             && TextUtils.isEmpty(passwordEditText.getText().toString().trim())){
@@ -92,8 +131,10 @@ public class WelcomebackLogin extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
                         Intent i = new Intent(WelcomebackLogin.this, LoginSuccess.class);
-                        saveEmailToSP();
+                        saveUserDataToSP();
                         startActivity(i);
+                        saveEmailForLogin();
+                        makeAutoLogin();
                         finish();
                     }else {
                         Toast.makeText(WelcomebackLogin.this, "Log in Error : " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
@@ -101,6 +142,42 @@ public class WelcomebackLogin extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private void loadSavedEmailForLogin()
+    {
+        String savedUsername = sharedPreferences.getString("key_saved_email", null);
+
+        if (savedUsername != null){
+            emailEditText.setText(savedUsername);
+            chkRememberUsername.setChecked(true);
+        }
+    }
+
+    private void saveEmailForLogin()
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        if (chkRememberUsername.isChecked()){
+            editor.putString("key_saved_email", emailEditText.getText().toString());
+        } else {
+            editor.remove("key_saved_email");
+        }
+
+        editor.apply();
+    }
+
+    private void makeAutoLogin()
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        if (this.chkKeepLogin.isChecked()){
+            editor.putBoolean("key_keep_login", true);
+        } else {
+            editor.remove("key_keep_login");
+        }
+
+        editor.apply();
     }
 
     public static boolean isValidEmail(CharSequence email){

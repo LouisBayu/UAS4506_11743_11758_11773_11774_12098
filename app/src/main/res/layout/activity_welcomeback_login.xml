@@ -105,19 +105,54 @@
 
     </LinearLayout>
 
-<!--        Text Forgot Password-->
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/forgot"
-        android:fontFamily="@font/raleway_bold"
-        android:textColor="@color/orangeButton"
-        android:textSize="18sp"
+        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/textInputLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="10dp"
-        android:onClick="onClickForgotPassword"/>
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingLeft="23dp"
+        android:paddingRight="30dp"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/chk_remember_username"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="Remember Me"
+                android:fontFamily="@font/raleway_semibold"
+                android:textColor="@color/orangeButton"
+                android:textSize="16sp"
+                android:layout_marginBottom="5dp"
+                />
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/chk_keep_login"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="Keep Me Login"
+                android:fontFamily="@font/raleway_semibold"
+                android:textColor="@color/orangeButton"
+                android:textSize="16sp"
+                />
+        </LinearLayout>
+
+        <!--        Text Forgot Password-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forgot"
+            android:fontFamily="@font/raleway_bold"
+            android:textColor="@color/orangeButton"
+            android:textSize="18sp"
+            android:onClick="onClickForgotPassword"/>
+
+    </LinearLayout>
+
 
 <!--    Button Login-->
     <androidx.constraintlayout.widget.ConstraintLayout

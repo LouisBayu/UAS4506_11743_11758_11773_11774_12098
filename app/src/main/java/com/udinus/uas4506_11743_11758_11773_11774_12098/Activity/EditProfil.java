@@ -149,11 +149,6 @@ public class EditProfil extends AppCompatActivity{
                     for (DataSnapshot x : snapshot.getChildren()){
                         user = x.getValue(UserModel.class);
                         setDataProfile();
-
-                        // save username to SP
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("key_username",user.getUsername());
-                        editor.apply();
                     }
                 }
             }

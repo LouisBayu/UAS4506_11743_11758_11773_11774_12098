@@ -68,26 +68,10 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
             @Override
             public void onNavigationItemReselected(@NonNull MenuItem item) {
-                Fragment fragment = null;
-
                 switch (item.getItemId()){
-                    case (R.id.page_home):
-                        fragment = new Home();
-                        break;
-                    case (R.id.page_search):
-                        fragment = new Search();
-                        break;
-                    case (R.id.page_add):
-                        fragment = new Add();
-                        break;
-                    case (R.id.page_saved):
-                        fragment = new Tersimpan();
-                        break;
-                    case (R.id.page_profil):
-                        fragment = new Profil();
-                        break;
+                    default:
+
                 }
-                loadFragment(fragment);
             }
         });
     }

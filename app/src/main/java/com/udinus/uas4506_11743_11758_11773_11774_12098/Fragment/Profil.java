@@ -122,6 +122,10 @@ public class Profil extends Fragment {
                 Intent i = new Intent(getActivity(), WelcomebackLogin.class);
                 startActivity(i);
                 getActivity().finish();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                editor.remove("key_keep_login");
+                editor.apply();
             }
         });
     }
