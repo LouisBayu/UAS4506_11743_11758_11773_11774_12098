@@ -6,35 +6,51 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.style.UpdateLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment.Profil;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.UserModel;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class EditProfil extends AppCompatActivity{
 
-    TextView edtEmail, edtFullname, edtUsername, edtPhone;
+    TextView edtEmail, edtFullname, edtUsername, edtPhone, changePhoto;
+    CircleImageView  imgProfil;
     SharedPreferences sharedPreferences;
     FirebaseDatabase db;
     DatabaseReference dbReference;
     UserModel user;
+    StorageReference storageReference;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +74,65 @@ public class EditProfil extends AppCompatActivity{
     }
 
     private void initComponent(){
+        imgProfil = findViewById(R.id.imgProfil);
         edtEmail = findViewById(R.id.edtEmail);
         edtFullname = findViewById(R.id.edtFullName);
         edtUsername = findViewById(R.id.edtUsername);
         edtPhone = findViewById(R.id.edtPhone);
+        changePhoto = findViewById(R.id.changePhoto);
+        context = this;
         user = new UserModel();
         db = FirebaseDatabase.getInstance();
         dbReference = db.getReference("users");
+        storageReference = FirebaseStorage.getInstance().getReference();
+
+        changePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(openGalleryIntent, 1000);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1000){
+            if (resultCode == Activity.RESULT_OK){
+                Uri imageUri = data.getData();
+
+                uploadImageToFirebase(imageUri);
+            }
+        }
+    }
+
+    private void uploadImageToFirebase(Uri imageUri){
+        String username = sharedPreferences.getString("key_username", null);
+        String ref = "users/" + username + "-profile.jpg";
+        StorageReference imgFileRef = storageReference.child(ref);
+        imgFileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                loadImgProfile(ref);
+                Toast.makeText(EditProfil.this, "Berhasil Upload", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(EditProfil.this, "Upload Gagal!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void loadImgProfile(String ref){
+        StorageReference imgFileRef = storageReference.child(ref);
+        imgFileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(context).load(uri).into(imgProfil);
+            }
+        });
     }
 
     private void getDataUser(){
@@ -80,7 +148,7 @@ public class EditProfil extends AppCompatActivity{
                 if (snapshot.exists()){
                     for (DataSnapshot x : snapshot.getChildren()){
                         user = x.getValue(UserModel.class);
-                        setDataToEditText();
+                        setDataProfile();
 
                         // save username to SP
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -95,14 +163,14 @@ public class EditProfil extends AppCompatActivity{
 
             }
         });
-
     }
 
-    private void setDataToEditText(){
+    private void setDataProfile(){
         edtUsername.setText(user.getUsername());
         edtFullname.setText(user.getFullname());
         edtEmail.setText(user.getEmail());
         edtPhone.setText(user.getPhone());
+        loadImgProfile("users/" + user.getUsername()+ "-profile.jpg");
     }
 
     public void klikKembali(View view) {
@@ -110,10 +178,6 @@ public class EditProfil extends AppCompatActivity{
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();
         setResult(Activity.RESULT_OK);
-    }
-
-    public void onClikUbahPhoto(View view){
-
     }
 
     public void updateFullName(View view){

@@ -93,7 +93,11 @@ public class ResetPassword extends AppCompatActivity {
             Toast.makeText(view.getContext(), "Inputan Tidak Boleh Kosong!", Toast.LENGTH_SHORT).show();
         } else if (!editTextNewPassword.getText().toString().equals(editTextConfirmPassword.getText().toString())){
             Toast.makeText(view.getContext(), "New dan Confirm Password Harus Sama!", Toast.LENGTH_SHORT).show();
-        } else {
+        } else if (editTextNewPassword.getText().toString().length() < 6
+                || editTextConfirmPassword.getText().toString().length() < 6){
+            Toast.makeText(ResetPassword.this, "Panjang Password Minimal 6 Karakter!", Toast.LENGTH_SHORT).show();
+        }
+        else {
             String newPass = editTextNewPassword.getText().toString();
             System.out.println(newPass);
             user.updatePassword(newPass).addOnCompleteListener(new OnCompleteListener<Void>() {

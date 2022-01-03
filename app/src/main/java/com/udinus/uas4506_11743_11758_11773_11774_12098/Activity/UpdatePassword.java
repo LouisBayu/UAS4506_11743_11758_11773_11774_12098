@@ -76,9 +76,13 @@ public class UpdatePassword extends AppCompatActivity {
                 String currentPassword = editTextCurrentPassword.getText().toString();
                 String newPassword = editTextNewPassword.getText().toString();
                 String confirmPassword = editTextConfirmPassword.getText().toString();
+                String currentUserPassword = sharedPreferences.getString("key_current_user_password", null);
 
                 if (TextUtils.isEmpty(currentPassword)){
                     Toast.makeText(UpdatePassword.this, "Masukkan Password saat ini", Toast.LENGTH_SHORT).show();
+                }
+                else if (!currentPassword.equals(currentUserPassword)){
+                    Toast.makeText(UpdatePassword.this, "Current Password Salah!", Toast.LENGTH_SHORT).show();
                 }
                 else if (newPassword.isEmpty()){
                     Toast.makeText(UpdatePassword.this, "Field tidak boleh kosong", Toast.LENGTH_SHORT).show();
@@ -88,6 +92,9 @@ public class UpdatePassword extends AppCompatActivity {
                 }
                 else if (newPassword.compareTo(confirmPassword) != 0){
                     Toast.makeText(UpdatePassword.this, "Password tidak cocok", Toast.LENGTH_SHORT).show();
+                }
+                else if (newPassword.length() < 6 || confirmPassword.length() < 6){
+                    Toast.makeText(UpdatePassword.this, "Panjang Password Minimal 6 Karakter!", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     updatePassword(currentPassword, newPassword);
@@ -106,9 +113,11 @@ public class UpdatePassword extends AppCompatActivity {
                 user.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        dbReference.child(username).child("password").setValue(newPassword);
-                        Toast.makeText(UpdatePassword.this, "Password berhasil diganti", Toast.LENGTH_SHORT).show();
-                        finish();
+                        if (task.isSuccessful()){
+                            dbReference.child(username).child("password").setValue(newPassword);
+                            Toast.makeText(UpdatePassword.this, "Password berhasil diganti", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

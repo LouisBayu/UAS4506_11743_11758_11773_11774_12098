@@ -47,13 +47,15 @@
                         android:gravity="fill_horizontal"
                         android:textColor="@color/orangeButton"
                         android:layout_marginTop="8dp"/>
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgProfil"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:src="@drawable/profile_pic"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/greetingsText"
-                        />
+                        app:civ_border_color="@color/orangeTextHeading"
+                        app:civ_border_width="1dp"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout

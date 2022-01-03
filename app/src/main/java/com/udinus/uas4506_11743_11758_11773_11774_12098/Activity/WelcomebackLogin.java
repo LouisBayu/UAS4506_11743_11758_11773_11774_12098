@@ -64,6 +64,7 @@ public class WelcomebackLogin extends AppCompatActivity {
     private void saveEmailToSP(){
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("key_email",emailEditText.getText().toString().trim());
+        editor.putString("key_current_user_password",passwordEditText.getText().toString().trim());
         editor.apply();
     }
 
