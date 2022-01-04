@@ -2,7 +2,6 @@ package com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,8 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,8 +22,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.auth.User;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Adapter.ResepAdapter;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.Resep;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.UserModel;
@@ -34,20 +29,15 @@ import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
 import java.util.ArrayList;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class Home extends Fragment {
 
     private Handler slideHandler = new Handler();
     private ViewPager2 vpRecommended;
     private View viewHome;
     TextView tvGreeting;
-    CircleImageView imgProfil;
     SharedPreferences sharedPreferences;
     FirebaseDatabase db;
     DatabaseReference dbReference;
-    StorageReference storageReference;
-    Context context;
     ArrayList<Resep> arrayResep = new ArrayList<>();
 
     @Override
@@ -56,7 +46,12 @@ public class Home extends Fragment {
 
         // Binding
         viewHome = inflater.inflate(R.layout.fragment_home,container,false);
-        initComponent(viewHome);
+        vpRecommended = viewHome.findViewById(R.id.vpRecommended);
+        tvGreeting = viewHome.findViewById(R.id.greetingsText);
+
+        db = FirebaseDatabase.getInstance();
+        dbReference = db.getReference("users");
+        sharedPreferences = getActivity().getSharedPreferences("appSharedPref", Context.MODE_PRIVATE);
 
         setItemResep();
         setVpRecommended();
@@ -67,20 +62,9 @@ public class Home extends Fragment {
 
     }
 
-    private void initComponent(View view){
-        context = getActivity();
-        vpRecommended = view.findViewById(R.id.vpRecommended);
-        tvGreeting = view.findViewById(R.id.greetingsText);
-        imgProfil = view.findViewById(R.id.imgProfil);
-
-        db = FirebaseDatabase.getInstance();
-        dbReference = db.getReference("users");
-        sharedPreferences = getActivity().getSharedPreferences("appSharedPref", Context.MODE_PRIVATE);
-        storageReference = FirebaseStorage.getInstance().getReference();
-    }
-
     private void greeting(){
         String email = sharedPreferences.getString("key_email", null);
+        System.out.println("-----------------"+ email);
         Query getUserData = dbReference.orderByChild("email").equalTo(email);
 
         getUserData.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -89,7 +73,7 @@ public class Home extends Fragment {
                 for (DataSnapshot x : snapshot.getChildren()){
                     UserModel user = x.getValue(UserModel.class);
                     tvGreeting.setText("Halo " + user.getUsername() + ",");
-                    loadImgProfile("users/"+user.getUsername()+"-profile.jpg");
+                    System.out.println(user.getUsername());
                 }
             }
 
@@ -99,16 +83,6 @@ public class Home extends Fragment {
             }
         });
 
-    }
-
-    private void loadImgProfile(String ref){
-        StorageReference imgFileRef = storageReference.child(ref);
-        imgFileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Glide.with(context).load(uri).into(imgProfil);
-            }
-        });
     }
 
     private void setVpRecommended(){

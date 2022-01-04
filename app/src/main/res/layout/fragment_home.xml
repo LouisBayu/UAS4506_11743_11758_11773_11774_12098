@@ -120,6 +120,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/linear2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/linear1"
@@ -151,11 +152,286 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:orientation="horizontal"/>
 
+            </LinearLayout>
+
+            // grid view
+            <LinearLayout
+                android:id="@+id/linear3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/linear2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/kategori"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Kategori Resep"
+                    android:fontFamily="@font/raleway_bold"
+                    android:textColor="@color/brownText"
+                    android:textSize="20sp"/>
+
+                <GridLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:rowCount="4"
+                    android:columnCount="2"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="45dp"
+                    android:layout_gravity="center_horizontal"
+                    android:columnOrderPreserved="false"
+                    android:background="#FFE3BE">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card1"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        app:cardCornerRadius="15dp"
+                        app:cardElevation="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_margin="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/card1"
+                            android:orientation="vertical"
+                            android:padding="3dp">
+
+                            <ImageView
+                                android:id="@+id/img_olahanDaging"
+                                android:layout_width="match_parent"
+                                android:layout_height="125dp"
+                                android:src="@drawable/katgr_olahandaging" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/img_olahanDaging"
+                                android:text="Olahan Daging"
+                                android:gravity="center"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/raleway_bold"
+                                android:textSize="15sp"
+                                android:textColor="@color/orangeTextHeading"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Title">
+                            </TextView>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card2"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        app:cardCornerRadius="15dp"
+                        app:cardElevation="5dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_margin="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/card2"
+                            android:orientation="vertical"
+                            android:padding="3dp">
+
+                            <ImageView
+                                android:id="@+id/sayuran"
+                                android:layout_width="match_parent"
+                                android:layout_height="125dp"
+                                android:src="@drawable/katgr_sayuran" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/sayuran"
+                                android:layout_marginLeft="5dp"
+                                android:text="Sayuran"
+                                android:gravity="center"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/raleway_bold"
+                                android:textSize="15sp"
+                                android:textColor="@color/orangeTextHeading"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Title">
+                            </TextView>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card3"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        app:cardCornerRadius="15dp"
+                        app:cardElevation="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_margin="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/card1"
+                            android:orientation="vertical"
+                            android:padding="3dp">
+
+                            <ImageView
+                                android:id="@+id/sefood"
+                                android:layout_width="match_parent"
+                                android:layout_height="125dp"
+                                android:src="@drawable/katgr_seafood" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/sefood"
+                                android:layout_marginLeft="5dp"
+                                android:text="Seafood"
+                                android:gravity="center"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/raleway_bold"
+                                android:textSize="15sp"
+                                android:textColor="@color/orangeTextHeading"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Title">
+                            </TextView>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card4"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        app:cardCornerRadius="15dp"
+                        app:cardElevation="5dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_margin="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/card2"
+                            android:orientation="vertical"
+                            android:padding="3dp">
+
+                            <ImageView
+                                android:id="@+id/jajanan"
+                                android:layout_width="match_parent"
+                                android:layout_height="125dp"
+                                android:src="@drawable/katgr_jajanan" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/card2"
+                                android:layout_marginLeft="5dp"
+                                android:text="Jajanan"
+                                android:gravity="center"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/raleway_bold"
+                                android:textSize="15sp"
+                                android:textColor="@color/orangeTextHeading"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Title">
+                            </TextView>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card5"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        app:cardCornerRadius="15dp"
+                        app:cardElevation="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_margin="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/card1"
+                            android:orientation="vertical"
+                            android:padding="3dp">
+
+                            <ImageView
+                                android:id="@+id/kue"
+                                android:layout_width="match_parent"
+                                android:layout_height="125dp"
+                                android:src="@drawable/katgr_kue" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/kue"
+                                android:layout_marginLeft="5dp"
+                                android:text="Kue"
+                                android:gravity="center"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/raleway_bold"
+                                android:textSize="15sp"
+                                android:textColor="@color/orangeTextHeading"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Title">
+                            </TextView>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card6"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        app:cardCornerRadius="15dp"
+                        app:cardElevation="5dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_margin="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/card2"
+                            android:orientation="vertical"
+                            android:padding="3dp">
+
+                            <ImageView
+                                android:id="@+id/minuman"
+                                android:layout_width="match_parent"
+                                android:layout_height="125dp"
+                                android:src="@drawable/katgr_minuman" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/minuman"
+                                android:layout_marginLeft="5dp"
+                                android:text="Minuman"
+                                android:gravity="center"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/raleway_bold"
+                                android:textSize="15sp"
+                                android:textColor="@color/orangeTextHeading"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Title">
+                            </TextView>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </GridLayout>
 
             </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
-
 
 </LinearLayout>
