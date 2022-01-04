@@ -30,7 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment.Profil;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.View.FragmentMenu.Profil;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.UserModel;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 

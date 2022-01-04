@@ -1,4 +1,4 @@
-package com.udinus.uas4506_11743_11758_11773_11774_12098.ui.main;
+package com.udinus.uas4506_11743_11758_11773_11774_12098.Model;
 
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;

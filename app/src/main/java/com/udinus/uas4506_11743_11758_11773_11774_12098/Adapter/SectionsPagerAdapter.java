@@ -1,4 +1,4 @@
-package com.udinus.uas4506_11743_11758_11773_11774_12098.ui.main;
+package com.udinus.uas4506_11743_11758_11773_11774_12098.Adapter;
 
 import android.content.Context;
 
@@ -9,6 +9,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.View.FragmentKategori.FragmentOlahanDaging;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.View.FragmentKategori.FragmentSayuran;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.View.FragmentKategori.FragmentSeafood;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.View.FragmentKategori.FragmentJajanan;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.View.FragmentKategori.FragmentKue;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.View.FragmentKategori.FragmentMinuman;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -38,22 +44,22 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position){
             case 0:
-                fragment = new Frag1();
+                fragment = new FragmentOlahanDaging();
                 break;
             case 1:
-                fragment = new Frag2();
+                fragment = new FragmentSayuran();
                 break;
             case 2:
-                fragment = new Frag3();
+                fragment = new FragmentSeafood();
                 break;
             case 3:
-                fragment = new Frag4();
+                fragment = new FragmentJajanan();
                 break;
             case 4:
-                fragment = new Frag5();
+                fragment = new FragmentKue();
                 break;
             case 5:
-                fragment = new Frag6();
+                fragment = new FragmentMinuman();
                 break;
         }
         return fragment;

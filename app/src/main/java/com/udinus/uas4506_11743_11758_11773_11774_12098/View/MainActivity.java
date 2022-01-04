@@ -13,12 +13,11 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment.Add;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment.Home;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment.Profil;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment.Search;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment.Tersimpan;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.Kategori_Tab;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.View.FragmentMenu.Add;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.View.FragmentMenu.Home;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.View.FragmentMenu.Profil;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.View.FragmentMenu.Search;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.View.FragmentMenu.Tersimpan;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -92,27 +91,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void katgrOlahanDaging(View view){
-        startActivity(new Intent(MainActivity.this, Kategori_Tab.class));
+        Intent i = new Intent(MainActivity.this, KategoriTab.class);
+        i.putExtra("index",0);
+        startActivity(i);
     }
 
     public void katgrSayuran(View view){
-        startActivity(new Intent(MainActivity.this, Kategori_Tab.class));
+        Intent i = new Intent(MainActivity.this, KategoriTab.class);
+        i.putExtra("index",1);
+        startActivity(i);
     }
 
     public void katgrSeafood(View view){
-        startActivity(new Intent(MainActivity.this, Kategori_Tab.class));
+        Intent i = new Intent(MainActivity.this, KategoriTab.class);
+        i.putExtra("index",2);
+        startActivity(i);
     }
 
     public void katgrJajanan(View view){
-        startActivity(new Intent(MainActivity.this, Kategori_Tab.class));
+        Intent i = new Intent(MainActivity.this, KategoriTab.class);
+        i.putExtra("index",3);
+        startActivity(i);
     }
 
     public void katgrKue(View view){
-        startActivity(new Intent(MainActivity.this, Kategori_Tab.class));
+        Intent i = new Intent(MainActivity.this, KategoriTab.class);
+        i.putExtra("index",4);
+        startActivity(i);
     }
 
     public void katgrMinuman(View view){
-        startActivity(new Intent(MainActivity.this, Kategori_Tab.class));
+        Intent i = new Intent(MainActivity.this, KategoriTab.class);
+        i.putExtra("index",5);
+        startActivity(i);
     }
 
 

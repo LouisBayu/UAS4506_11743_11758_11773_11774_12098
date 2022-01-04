@@ -1,4 +1,4 @@
-package com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment;
+package com.udinus.uas4506_11743_11758_11773_11774_12098.View.FragmentMenu;
 
 import static java.util.Objects.requireNonNull;
 
@@ -43,7 +43,6 @@ public class Search extends Fragment {
     RecyclerView rvSearch;
     ArrayList<ResepModel> resepArray;
     Context context;
-    RecyclerView recyclerView;
     DatabaseReference resepRef;
     StorageReference storageReference;
     AdapterSearchResep adapterSearch;

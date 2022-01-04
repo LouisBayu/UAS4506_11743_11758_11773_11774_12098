@@ -1,10 +1,11 @@
-package com.udinus.uas4506_11743_11758_11773_11774_12098;
+package com.udinus.uas4506_11743_11758_11773_11774_12098.View;
 
 import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,11 +13,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.udinus.uas4506_11743_11758_11773_11774_12098.ui.main.SectionsPagerAdapter;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.Adapter.SectionsPagerAdapter;
 
-public class Kategori_Tab extends AppCompatActivity {
-
-//    private ActivityKategoriTabBinding binding;
+public class KategoriTab extends AppCompatActivity {
+    TabLayout tabs;
+    ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +33,24 @@ public class Kategori_Tab extends AppCompatActivity {
             window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimary));
         }
 
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        ViewPager viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
+        initComponent();
+        selectPage(getIntent().getIntExtra("index",0));
 
+
+
+    }
+
+    private void initComponent(){
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(sectionsPagerAdapter);
+        tabs = findViewById(R.id.tabs);
+        tabs.setupWithViewPager(viewPager);
+    }
+
+    private void selectPage(int pageIndex){
+        tabs.setScrollPosition(pageIndex,0f,true);
+        viewPager.setCurrentItem(pageIndex);
     }
 
     public void backKategori(View view){

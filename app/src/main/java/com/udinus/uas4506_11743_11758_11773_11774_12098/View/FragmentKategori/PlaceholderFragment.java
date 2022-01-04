@@ -1,4 +1,4 @@
-package com.udinus.uas4506_11743_11758_11773_11774_12098.ui.main;
+package com.udinus.uas4506_11743_11758_11773_11774_12098.View.FragmentKategori;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.PageViewModel;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.databinding.FragmentKategoriTabBinding;
 
 /**

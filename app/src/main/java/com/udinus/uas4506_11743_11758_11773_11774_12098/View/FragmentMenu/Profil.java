@@ -1,4 +1,4 @@
-package com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment;
+package com.udinus.uas4506_11743_11758_11773_11774_12098.View.FragmentMenu;
 
 import android.content.Context;
 import android.content.Intent;

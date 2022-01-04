@@ -16,7 +16,7 @@
             android:name=".View.HelpSupport"
             android:exported="true" />
         <activity
-            android:name=".Kategori_Tab"
+            android:name=".View.KategoriTab"
             android:exported="false"
             android:label="@string/title_activity_kategori_tab"
             android:theme="@style/AppTheme.NoActionBar" />
