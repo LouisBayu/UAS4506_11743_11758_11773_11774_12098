@@ -1,19 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.FragmentMenu.Home"
-    android:background="#823111">
+    android:background="@color/bg"
+    tools:context=".View.FragmentMenu.Home">
+
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/bookM"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Halaman Tersimpan"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="@color/white"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/bookText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bookmark"
+            android:layout_margin="20dp"
+            android:textSize="30sp"
+            android:textColor="@color/orangeTextHeading"
+            android:textStyle="bold"
+            android:fontFamily="@font/raleway_bold"/>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="5dp"
+            android:background="@color/orangeTextHeading"/>
+        <TextView
+            android:id="@+id/semuaText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Resep Tersimpan"
+            android:textSize="18sp"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/raleway_semibold"
+            android:textColor="@color/orangeTextHeading"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listBookM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            />
+    </LinearLayout>
 
-</FrameLayout>
+
+</LinearLayout>
