@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -18,6 +20,7 @@ import com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment.Home;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment.Profil;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment.Search;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment.Tersimpan;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.Kategori_Tab;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         if (Build.VERSION.SDK_INT >= 21) {
             Window window = this.getWindow();
@@ -88,5 +92,30 @@ public class MainActivity extends AppCompatActivity {
         loadFragment(new Add());
         bottomNavigationView.setSelectedItemId(R.id.page_add);
     }
+
+    public void katgrOlahanDaging(View view){
+        startActivity(new Intent(MainActivity.this, Kategori_Tab.class));
+    }
+
+    public void katgrSayuran(View view){
+        startActivity(new Intent(MainActivity.this, Kategori_Tab.class));
+    }
+
+    public void katgrSeafood(View view){
+        startActivity(new Intent(MainActivity.this, Kategori_Tab.class));
+    }
+
+    public void katgrJajanan(View view){
+        startActivity(new Intent(MainActivity.this, Kategori_Tab.class));
+    }
+
+    public void katgrKue(View view){
+        startActivity(new Intent(MainActivity.this, Kategori_Tab.class));
+    }
+
+    public void katgrMinuman(View view){
+        startActivity(new Intent(MainActivity.this, Kategori_Tab.class));
+    }
+
 
 }

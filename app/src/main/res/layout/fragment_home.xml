@@ -205,6 +205,7 @@
 
                             <ImageView
                                 android:id="@+id/img_olahanDaging"
+                                android:onClick="katgrOlahanDaging"
                                 android:layout_width="match_parent"
                                 android:layout_height="125dp"
                                 android:src="@drawable/katgr_olahandaging" />
@@ -244,6 +245,7 @@
 
                             <ImageView
                                 android:id="@+id/sayuran"
+                                android:onClick="katgrSayuran"
                                 android:layout_width="match_parent"
                                 android:layout_height="125dp"
                                 android:src="@drawable/katgr_sayuran" />
@@ -284,6 +286,7 @@
 
                             <ImageView
                                 android:id="@+id/sefood"
+                                android:onClick="katgrSeafood"
                                 android:layout_width="match_parent"
                                 android:layout_height="125dp"
                                 android:src="@drawable/katgr_seafood" />
@@ -324,6 +327,7 @@
 
                             <ImageView
                                 android:id="@+id/jajanan"
+                                android:onClick="katgrJajanan"
                                 android:layout_width="match_parent"
                                 android:layout_height="125dp"
                                 android:src="@drawable/katgr_jajanan" />
@@ -364,6 +368,7 @@
 
                             <ImageView
                                 android:id="@+id/kue"
+                                android:onClick="katgrKue"
                                 android:layout_width="match_parent"
                                 android:layout_height="125dp"
                                 android:src="@drawable/katgr_kue" />
@@ -404,6 +409,7 @@
 
                             <ImageView
                                 android:id="@+id/minuman"
+                                android:onClick="katgrMinuman"
                                 android:layout_width="match_parent"
                                 android:layout_height="125dp"
                                 android:src="@drawable/katgr_minuman" />

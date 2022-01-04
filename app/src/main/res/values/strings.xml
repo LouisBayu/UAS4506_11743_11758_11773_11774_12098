@@ -57,4 +57,22 @@
         <item>Jajanan</item>
     </string-array>
 
+    <string name="nama_makanan">Nama Makanan</string>
+    <string name="detail">Detail</string>
+    <string name="title_activity_tab_kategori">Tab_Kategori</string>
+    <string name="tab_text_1">Olahan Daging</string>
+    <string name="tab_text_2">Sayuran</string>
+    <string name="tab_text_3">Seafood</string>
+    <string name="tab_text_4">Jajanan</string>
+    <string name="tab_text_5">Kue</string>
+    <string name="tab_text_6">Minuman</string>
+    <string name="title_activity_kategori_tab">Kategori_Tab</string>
+
+    <string name="kategori_olahanDaging">Resep Olahan Daging</string>
+    <string name="kategori_sayuran">Resep Sayuran</string>
+    <string name="kategori_seafood">Resep Seafood</string>
+    <string name="kategori_jajanan">Resep Jajanan</string>
+    <string name="kategori_kue">Resep Kue</string>
+    <string name="kategori_minuman">Resep Minuman</string>
+
 </resources>

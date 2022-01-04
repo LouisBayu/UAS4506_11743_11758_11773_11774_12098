@@ -16,6 +16,11 @@
             android:name=".Activity.HelpSupport"
             android:exported="true" />
         <activity
+            android:name=".Kategori_Tab"
+            android:exported="false"
+            android:label="@string/title_activity_kategori_tab"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".Activity.UpdateFullName"
             android:exported="true" />
         <activity
