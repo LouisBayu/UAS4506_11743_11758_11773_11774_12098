@@ -18,46 +18,73 @@
         android:backgroundTint="#FFE3BE">
 
         <RelativeLayout
+            android:id="@+id/list_resep"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
             android:onClick="clickDetail">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/img_item_foto"
+                android:id="@+id/img_resep_search"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ayammentega" />
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_launcher" />
 
             <TextView
-                android:id="@+id/nama"
+                android:id="@+id/nama_resep_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
-                android:layout_toEndOf="@id/img_item_foto"
-                android:text="@string/nama_makanan"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:layout_toEndOf="@id/img_resep_search"
+                android:text="Nama"
+                android:fontFamily="@font/raleway_bold"
+                android:textColor="@color/orangeTextHeading"
+                android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/detail"
+                android:id="@+id/kategori_resep_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/nama"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_toEndOf="@id/img_item_foto"
+                android:layout_below="@id/nama_resep_search"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@id/img_resep_search"
                 android:ellipsize="end"
-                android:maxLines="10"
-                android:text="@string/detail"
+                android:text="Kategori"
+                android:fontFamily="@font/raleway_medium"
+                android:textColor="@color/brownText"
                 android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/author_resep_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/kategori_resep_search"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@id/img_resep_search"
+                android:ellipsize="end"
+                android:text="Author"
+                android:fontFamily="@font/raleway_bold"
+                android:textColor="@color/brownText"
+                android:textSize="14sp" />
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/bookmark">
+            </ImageButton>
 
         </RelativeLayout>
 

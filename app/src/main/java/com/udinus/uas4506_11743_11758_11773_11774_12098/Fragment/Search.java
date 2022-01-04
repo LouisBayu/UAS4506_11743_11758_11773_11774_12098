@@ -1,37 +1,46 @@
 package com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment;
 
+import static java.util.Objects.requireNonNull;
+
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
-import androidx.appcompat.widget.SearchView;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.udinus.uas4506_11743_11758_11773_11774_12098.Activity.SearchData;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.Activity.SearchList;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.Adapter.SearchAdapter;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.SearchResep;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.SearchResepHolder;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import javax.annotation.Nullable;
 
 public class Search extends Fragment {
 
-    RecyclerView allSearch;
-    List<SearchList> list = new ArrayList<>();
 
-    private List<SearchList> listSearch = new ArrayList<>();
-    SearchAdapter searchAdapter;
-    SearchView searchView;
+    EditText mSearchField;
+    ImageButton mSearchBtn;
+    RecyclerView mResultList;
+    DatabaseReference mResepDatabase;
+
+    RecyclerView recyclerView;
+    DatabaseReference databaseReference;
+    FirebaseRecyclerOptions<SearchResep> options;
+    FirebaseRecyclerAdapter<SearchResep, SearchResepHolder> adapter;
 
     @Nullable
     @Override
@@ -39,75 +48,59 @@ public class Search extends Fragment {
                              Bundle savedInstanceState) {   
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
-        searchView = view.findViewById(R.id.search_view);
+        recyclerView = (RecyclerView)view.findViewById(R.id.viewCariResep);
+        recyclerView.setHasFixedSize(true);
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("resep");
+
+        options = new FirebaseRecyclerOptions.Builder<SearchResep>().setQuery(databaseReference, SearchResep.class).build();
+
+        adapter = new FirebaseRecyclerAdapter<SearchResep, SearchResepHolder>(options) {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
+            protected void onBindViewHolder(@NonNull SearchResepHolder holder, int position, @NonNull SearchResep model) {
+                Glide.with(holder.itemView.getContext())
+                        .load(model.getImage())
+                        .apply(new RequestOptions().override(1000, 1000))
+                        .into(holder.img_resep);
+                holder.nama.setText(model.getNama());
+                holder.kategori.setText(model.getKategori());
+                holder.author.setText("Oleh : "+model.getAuthor());
             }
 
+            @NonNull
             @Override
-            public boolean onQueryTextChange(String newText) {
-                filter(newText);
-                return true;
+            public SearchResepHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.search_list,parent, false);
+                return new SearchResepHolder(view);
             }
-        });
+        };
 
-//        EditText editText = view.findViewById(R.id.edittext);
-//        editText.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                filter(s.toString());
-//            }
-//        });
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter.startListening();
+        recyclerView.setAdapter(adapter);
 
-        allSearch = view.findViewById(R.id.viewCariResep);
-        allSearch.setHasFixedSize(true);
-
-        list.addAll(SearchData.getSearchData());
-        showRecyclerList();
         return view;
-
     }
 
-    public void filter(String newText){
-        List<SearchList> filteredList = new ArrayList<>();
+    @Override
+    public void onStart(){
+        super.onStart();
+        if (adapter != null)
+            adapter.startListening();
+    }
 
-        for (SearchList list : listSearch) {
-            if (list.getNama().toLowerCase().contains(newText.toLowerCase())){
-                filteredList.add(list);
-            }
+    @Override
+    public void onStop(){
+        if (adapter != null)
+            adapter.stopListening();
+        super.onStop();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        if (adapter != null) {
+            adapter.startListening();
         }
-        searchAdapter.filterList(filteredList);
     }
-
-    private void showRecyclerList() {
-        allSearch.setLayoutManager(new RecyclerView.LayoutManager() {
-            @Override
-            public RecyclerView.LayoutParams generateDefaultLayoutParams() {
-                return null;
-            }
-
-            @Override
-            public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
-                super.onLayoutChildren(recycler, state);
-
-            }
-        });
-        allSearch.setLayoutManager(new LinearLayoutManager(getContext()));
-        SearchAdapter searchAdapter = new SearchAdapter(list);
-        allSearch.setAdapter((searchAdapter));
-    }
-
 }

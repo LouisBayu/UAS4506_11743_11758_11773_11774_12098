@@ -10,21 +10,49 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_view"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/bg"
-        android:elevation="3dp">
-    </androidx.appcompat.widget.SearchView>
+<!--    <androidx.appcompat.widget.SearchView-->
+<!--        android:id="@+id/search_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:layout_marginBottom="8dp"-->
+<!--        android:background="@drawable/searchbar"-->
+<!--        android:clickable="true">-->
+<!--    </androidx.appcompat.widget.SearchView>-->
 
+    <EditText
+        android:id="@+id/search_view"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:ems="20"
+        android:background="@drawable/searchbar"
+        android:hint="Cari resep"
+        android:inputType="text"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="60dp"
+        android:paddingTop="10dp"
+        android:textColor="@color/orangeTextHeading"
+        android:fontFamily="@font/raleway_medium"
+        android:textSize="18sp" />
+
+    <ImageButton
+        android:id="@+id/search_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/search_view"
+        android:layout_alignBottom="@+id/search_view"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="22dp"
+        android:background="@drawable/search_btn"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cardAsk"
+        android:id="@+id/cardSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/search_view"
@@ -39,13 +67,13 @@
         android:paddingBottom="5dp">
 
         <ImageView
-            android:id="@+id/dishLogo"
+            android:id="@+id/marketLogo"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/icon_dish"
-            app:layout_constraintStart_toStartOf="@id/cardAsk"
-            app:layout_constraintTop_toTopOf="@id/cardAsk" />
+            android:src="@drawable/icon_market"
+            app:layout_constraintStart_toStartOf="@id/cardSearch"
+            app:layout_constraintTop_toTopOf="@id/cardSearch" />
 
         <TextView
             android:id="@+id/cardText1"
@@ -55,11 +83,11 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/raleway_semibold"
             android:gravity="fill_horizontal"
-            android:text="Anda punya resep masakan"
+            android:text="Belum punya bahan"
             android:textColor="@color/brownText"
             android:textSize="17sp"
-            app:layout_constraintStart_toEndOf="@id/dishLogo"
-            app:layout_constraintTop_toTopOf="@id/dishLogo" />
+            app:layout_constraintStart_toEndOf="@id/marketLogo"
+            app:layout_constraintTop_toTopOf="@id/marketLogo" />
 
         <TextView
             android:id="@+id/cardText2"
@@ -67,7 +95,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/raleway_semibold"
             android:gravity="fill_horizontal"
-            android:text="menarik dirumah?"
+            android:text="masak dirumah?"
             android:textColor="@color/brownText"
             android:textSize="17sp"
             app:layout_constraintStart_toStartOf="@id/cardText1"
@@ -81,7 +109,7 @@
             android:fontFamily="@font/raleway_bold"
             android:gravity="fill_horizontal"
             android:onClick="onClickAdd"
-            android:text="@string/sharenow"
+            android:text="@string/searchlocation"
             android:textColor="@color/orangeTextHeading"
             android:textSize="17sp"
             app:layout_constraintStart_toStartOf="@id/cardText2"
@@ -89,65 +117,28 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <LinearLayout
-        android:id="@+id/linearSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/cardAsk"
-        android:background="@drawable/bg_search"
-        android:elevation="5dp"
-        android:orientation="horizontal">
-
-<!--        <ImageView-->
-<!--            android:layout_width="40dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:background="@drawable/bg_icon_cari"-->
-<!--            android:contentDescription="@string/app_name"-->
-<!--            android:padding="6dp"-->
-<!--            android:src="@drawable/icon_cari"-->
-<!--            android:tint="@color/black"-->
-<!--            tools:ignore="UseAppTint" />-->
-
-<!--        <EditText-->
-<!--            android:id="@+id/edittext"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_weight="1"-->
-<!--            android:background="@null"-->
-<!--            android:hint="Cari resep enak"-->
-<!--            android:importantForAutofill="no"-->
-<!--            android:inputType="text"-->
-<!--            android:paddingStart="15dp"-->
-<!--            android:paddingEnd="15dp"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="20sp" />-->
-
-    </LinearLayout>
-
     <TextView
         android:id="@+id/semuaResep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Semua Resep"
-        android:layout_below="@id/linearSearch"
-        android:textSize="20sp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
-        android:gravity="center"
-        android:textStyle="bold" />
+        android:layout_marginRight="20dp"
+        android:text="Semua Resep"
+        android:layout_below="@id/cardSearch"
+        android:fontFamily="@font/raleway_bold"
+        android:textColor="@color/brownText"
+        android:textSize="20sp"
+        android:gravity="left" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/viewCariResep"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/semuaResep"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="270dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="30dp"
-        tools:listitem="@layout/search_list"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp">
+    </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

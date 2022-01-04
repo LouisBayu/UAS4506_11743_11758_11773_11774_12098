@@ -113,7 +113,7 @@ public class ForgotPassword extends AppCompatActivity {
                     editor.apply();
                     System.out.println(sharedPreferences.getString("key_old_password",null));
                     System.out.println(sharedPreferences.getString("key_username",null));
-                    Intent i = new Intent(ForgotPassword.this, ResetPassword.class);
+                    Intent i = new Intent(ForgotPassword.this, SendOTP.class);
                     startActivity(i);
                     finish();
                 }
