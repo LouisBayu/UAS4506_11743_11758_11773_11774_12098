@@ -70,58 +70,51 @@ public class AddResep extends AppCompatActivity {
         initComponent();
         addViewBahan();
         addViewLangkah();
-//        add();
+        add();
 
     }
 
     void add(){
-        Resep garangAsemAyam = new Resep();
-        garangAsemAyam.setAuthor("louisbay");
-        garangAsemAyam.setNama("Garang Asem Ayam");
-        garangAsemAyam.setKategori("Olahan Daging");
-        garangAsemAyam.setImage(R.drawable.garangasem);
-        String[] bahan10 = {
-                "500 gram daging ayam bagian manapun, potong-potong sesuai selera",
-                "5 buah belimbing wuluh, dipotong kasar",
-                "3 buah tomat hijau, potong menjadi 4 bagian",
-                "10 buah cabai rawit merah utuh",
-                "1 ruas lengkuas, diiris tipis",
-                "200 ml air santan",
-                "5 lembar daun salam",
-                "1 batang serai, potong menjadi 5 bagian",
-                "Air secukupnya untuk merebus",
-                "Daun pisang secukupnya untuk membungkus",
-                "8 siung bawang merah",
-                "4 siung bawang putih",
-                "1 sendok teh garam",
-                "1/4 sendok teh penyedap rasa"};
-        garangAsemAyam.setBahan(bahan10);
-        String[] langkah10 = {
-                "Siapkan semua bahan yang dibutuhkan untuk membuat garang asem ayam.",
-                "Cuci bersih daging ayam lalu rebus hingga mendidih dan daging matang. Angkat dan tiriskan daging ayam lalu masukkan ke dalam mangkuk besar.",
-                "Kemudian tambahkan bumbu halus, potongan belimbing wuluh, tomat hijau, cabai rawit merah utuh, dan lengkuas.",
-                "Tuang air santan ke dalam mangkuk ayam dan aduk-aduk secara merata agar semua bahan dan bumbu tercampur.",
-                "Ambil lembaran daun pisang dan lipat salah satu ujungnya lalu masukkan potongan 1 potongan serai dan 1 lembar daun salam.",
-                "Masukkan daging ayam dan bahan campurannya yaitu potongan belimbing wuluh, tomat hijau, lengkuas, dan cabai rawit utuh.",
-                "Jangan lupa tambahkan kuah santannya lalu bungkus rapat daging ayam dengan daun pisang dan tusuk dengan lidi atau tusuk gigi. Lakukan proses ini sampai semua bahan habis.",
-                "Panaskan pengukus dan kukus garang asem ayam dengan api sedang sampai matang sekitar 30 menitan.",
-                "Setelah matang, angkat garang asem ayam dan sajikan selagi hangat."};
-        garangAsemAyam.setLangkah(langkah10);
-
-        Uri img = drawableToUri(garangAsemAyam.getImage());
+        Resep baksoSapiRica = new Resep();
+        baksoSapiRica.setAuthor("kyurise");
+        baksoSapiRica.setNama("Bakso Sapi Rica");
+        baksoSapiRica.setKategori("Olahan Daging");
+        baksoSapiRica.setImage(R.drawable.baksosapirica);
+        String[] bahan40 = {
+                "12 butir bakso sapi. Sayat menjadi 4 bagian tanpa terputus. Goreng dan sisihkan",
+                "1 lembar daun jeruk",
+                "1 genggam kemangi",
+                "1 batang serai, ikat lalu geprek",
+                "1 ruas  jahe, geprek",
+                "Bumbu rica-rica (blender kasar) :",
+                "3 siung bawang merah",
+                "5 siung bawang putih",
+                "7 buah cabai merah",
+                "3 buah cabai rawit",
+                "1 butir kemiri",
+                "Garam, gula, penyedap secukupnya",
+                "Sedikit air" };
+        baksoSapiRica.setBahan(bahan40);
+        String[] langkah40 = {
+                "Siapkan wajan dengan minyak secukupnya. Tumis bahan rica-rica sampai harum, masukkan serai, jahe, daun jeruk.",
+                "Masukkan bakso, aduk-aduk sampai rata, masukkan kemangi, garam, gula, penyedap, kecap manis. Diaduk rata. Kemudian tunggu sampai bumbu meresap. Masukkan sedikit air, masak sampai air menyusut.",
+                "Baso rica-rica siap disantap!"};
+        baksoSapiRica.setLangkah(langkah40);
+        
+        Uri img = drawableToUri(baksoSapiRica.getImage());
         if (img != null){
-            String ref = garangAsemAyam.getNama() + "-pic.jpg";
+            String ref = baksoSapiRica.getNama() + "-pic.jpg";
 
             StorageReference imgFileRef = mStorageReference.child(ref);
 
             imgFileRef.putFile(img).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    resepModel.setNama(garangAsemAyam.getNama());
-                    resepModel.setAuthor(garangAsemAyam.getAuthor());
-                    resepModel.setKategori(garangAsemAyam.getKategori());
-                    resepModel.setBahan(listToArray(garangAsemAyam.getBahan()));
-                    resepModel.setLangkah(listToArray(garangAsemAyam.getLangkah()));
+                    resepModel.setNama(baksoSapiRica.getNama());
+                    resepModel.setAuthor(baksoSapiRica.getAuthor());
+                    resepModel.setKategori(baksoSapiRica.getKategori());
+                    resepModel.setBahan(listToArray(baksoSapiRica.getBahan()));
+                    resepModel.setLangkah(listToArray(baksoSapiRica.getLangkah()));
                     resepModel.setImage("gs://uas-ppb4506.appspot.com/resep/"+ref);
 
                     String key = resepModel.getNama().toLowerCase();

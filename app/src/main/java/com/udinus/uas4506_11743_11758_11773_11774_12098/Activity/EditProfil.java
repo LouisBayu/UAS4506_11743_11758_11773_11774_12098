@@ -196,7 +196,8 @@ public class EditProfil extends AppCompatActivity{
     }
 
     public void onClickHelpSupport(View view){
-
+        Intent i = new Intent(EditProfil.this, HelpSupport.class);
+        startActivity(i);
     }
 
     public void onClickDeleteAccount(View view){
