@@ -46,4 +46,13 @@
     <string name="nama_makanan">Nama Makanan</string>
     <string name="detail">Detail</string>
 
+    <string-array name="kategori">
+        <item>Olahan Daging</item>
+        <item>Seafood</item>
+        <item>Sayur</item>
+        <item>Kue</item>
+        <item>Minuman</item>
+        <item>Jajanan</item>
+    </string-array>
+
 </resources>

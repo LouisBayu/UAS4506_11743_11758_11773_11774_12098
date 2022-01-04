@@ -51,6 +51,7 @@
             android:src="@drawable/addimg"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
+            android:scaleType="centerCrop"
             android:onClick="onClickAddFoto"/>
 
         <TextView
@@ -114,6 +115,39 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/raleway_bold"
             android:gravity="center"
+            android:text="Katergori"
+            android:textColor="@color/orangeButton"
+            android:textSize="20sp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:drawableTint="@color/orangeButton"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tvAktivitasFisik"
+            android:background="@drawable/addinput"
+            android:paddingVertical="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            >
+            <Spinner
+                android:id="@+id/spinnerKategori"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@android:layout/simple_list_item_1"
+                />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/raleway_bold"
+            android:gravity="center"
             android:text="Bahan-bahan"
             android:textColor="@color/orangeButton"
             android:textSize="20sp"
@@ -133,11 +167,16 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAddBahan"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cornerRadius="10dp"
+            android:padding="5dp"
+            android:text="Add"
+            android:fontFamily="@font/raleway_bold"
+            android:drawableEnd="@drawable/ic_add"
+            android:drawableTint="@color/white"
             android:layout_marginRight="30dp"
-            android:background="@drawable/ic_add"/>
+            android:layout_marginLeft="30dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -164,11 +203,16 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAddLangkah"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cornerRadius="10dp"
+            android:padding="5dp"
+            android:text="Add"
+            android:fontFamily="@font/raleway_bold"
+            android:drawableEnd="@drawable/ic_add"
+            android:drawableTint="@color/white"
             android:layout_marginRight="30dp"
-            android:background="@drawable/ic_add"/>
+            android:layout_marginLeft="30dp"/>
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"

@@ -36,6 +36,7 @@ import com.udinus.uas4506_11743_11758_11773_11774_12098.Activity.WelcomebackLogi
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Adapter.AdapterResepProfil;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.ItemResepProfil;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.ModelItemResepProfil;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.ResepModel;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.UserModel;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
@@ -55,10 +56,11 @@ public class Profil extends Fragment {
     AdapterResepProfil adapterResepProfil;
     RecyclerView.LayoutManager layoutManager;
     ArrayList<ModelItemResepProfil> data;
+    ArrayList<ResepModel> resepUserArray;
 
     SharedPreferences sharedPreferences;
     FirebaseDatabase db;
-    DatabaseReference dbReference;
+    DatabaseReference dbReference, resepRef;
     FirebaseAuth auth;
     StorageReference storageReference;
     Context context;
@@ -71,7 +73,7 @@ public class Profil extends Fragment {
         initComponent(view);
 
         getDataProfil();
-
+        getDataResepUser();
         return view;
     }
 
@@ -85,7 +87,9 @@ public class Profil extends Fragment {
 
         db = FirebaseDatabase.getInstance();
         dbReference = db.getReference("users");
+        resepRef = db.getReference("resep");
         sharedPreferences = getActivity().getSharedPreferences("appSharedPref", Context.MODE_PRIVATE);
+
 
         auth = FirebaseAuth.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
@@ -96,18 +100,51 @@ public class Profil extends Fragment {
         layoutManager = new GridLayoutManager(this.getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
 
-        data = new ArrayList<>();
-        for (int i = 0; i < ItemResepProfil.title.length; i++){
-            data.add(new ModelItemResepProfil(
-                    ItemResepProfil.title[i],
-                    ItemResepProfil.category[i],
-                    ItemResepProfil.image[i]
-            ));
-        }
+//        data = new ArrayList<>();
+//        for (int i = 0; i < ItemResepProfil.title.length; i++){
+//            data.add(new ModelItemResepProfil(
+//                    ItemResepProfil.title[i],
+//                    ItemResepProfil.category[i],
+//                    ItemResepProfil.image[i]
+//            ));
+//        }
+        resepUserArray = new ArrayList<>();
 
-        adapterResepProfil = new AdapterResepProfil(data);
+        adapterResepProfil = new AdapterResepProfil(resepUserArray, context);
         recyclerView.setAdapter(adapterResepProfil);
 
+
+
+        setButtonsOnClick();
+    }
+
+    private void getDataResepUser(){
+        String username = sharedPreferences.getString("key_username",null);
+        Query getUserResep = resepRef.orderByChild("author").equalTo(username);
+
+        getUserResep.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot x : snapshot.getChildren()){
+                    ResepModel resep = new ResepModel();
+                    resep.setNama(x.child("nama").getValue().toString());
+                    resep.setAuthor(x.child("author").getValue().toString());
+                    resep.setKategori(x.child("kategori").getValue().toString());
+                    resep.setImage(x.child("image").getValue().toString());
+                    resep.setBahan((ArrayList<String>) x.child("bahan").getValue());
+                    resep.setLangkah((ArrayList<String>) x.child("bahan").getValue());
+                    resepUserArray.add(resep);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void setButtonsOnClick(){
         btnEditProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -150,8 +187,8 @@ public class Profil extends Fragment {
 
             }
         });
-
     }
+
 
     private void loadImgProfile(String ref){
         StorageReference imgFileRef = storageReference.child(ref);
