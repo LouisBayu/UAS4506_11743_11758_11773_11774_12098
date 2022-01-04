@@ -13,7 +13,7 @@
         android:id="@+id/logo_resep"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="100dp"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/resep" />

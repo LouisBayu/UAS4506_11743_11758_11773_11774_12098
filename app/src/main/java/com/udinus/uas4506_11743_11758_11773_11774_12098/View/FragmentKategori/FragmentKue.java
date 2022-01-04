@@ -73,7 +73,7 @@ public class FragmentKue extends Fragment {
                     resep.setKategori(x.child("kategori").getValue().toString());
                     resep.setImage(x.child("image").getValue().toString());
                     resep.setBahan((ArrayList<String>) x.child("bahan").getValue());
-                    resep.setLangkah((ArrayList<String>) x.child("bahan").getValue());
+                    resep.setLangkah((ArrayList<String>) x.child("langkah").getValue());
                     resepArray.add(resep);
                 }
                 adapterResepKategori.notifyDataSetChanged();

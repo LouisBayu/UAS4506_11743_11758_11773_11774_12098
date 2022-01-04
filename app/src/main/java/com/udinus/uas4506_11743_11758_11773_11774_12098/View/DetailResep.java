@@ -101,9 +101,9 @@ public class DetailResep extends AppCompatActivity {
 
         for (int i = 0; i < data.length ; i++){
             if (i < data.length-1){
-                result += (data[i] + "\n\n\n");
+                result += ((i+1) + "#  " + data[i] + "\n\n\n");
             } else {
-                result += data[i];
+                result += (i+1) + "#  " + data[i];
             }
         }
 
