@@ -2,7 +2,9 @@ package com.udinus.uas4506_11743_11758_11773_11774_12098.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +14,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
 public class DetailResep extends AppCompatActivity {
@@ -19,6 +25,8 @@ public class DetailResep extends AppCompatActivity {
 
     TextView namaTV,authorTV,bahanTV,langkahTV;
     ImageView imageIV;
+    FirebaseStorage firebaseStorage;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +39,19 @@ public class DetailResep extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.bg));
         }
+        initComponent();
+        getIncomingIntent();
+    }
+
+    private void initComponent(){
         namaTV = findViewById(R.id.title);
         authorTV = findViewById(R.id.author);
         bahanTV = findViewById(R.id.bahanResep);
         langkahTV = findViewById(R.id.langkahResep);
         imageIV = findViewById(R.id.image);
 
-        getIncomingIntent();
+        firebaseStorage = FirebaseStorage.getInstance();
+        context = this;
     }
 
     private void getIncomingIntent(){
@@ -46,18 +60,28 @@ public class DetailResep extends AppCompatActivity {
             String author = getIntent().getStringExtra("author");
             String[] bahan = getIntent().getStringArrayExtra("bahan");
             String[] langkah = getIntent().getStringArrayExtra("langkah");
-            int image = getIntent().getIntExtra("image",0);
+            String image = getIntent().getStringExtra("image");
 
             setDataDetails(nama,author,bahan,langkah,image);
         }
     }
 
-    private void setDataDetails(String nama, String author, String[] bahan, String[] langkah, int image){
+    private void setDataDetails(String nama, String author, String[] bahan, String[] langkah, String image){
+        StorageReference imgRef = firebaseStorage.getReferenceFromUrl(image);
+
         namaTV.setText(nama);
         authorTV.setText("From : " + author);
         bahanTV.setText(listBahantoString(bahan));
         langkahTV.setText(listLangkahtoString(langkah));
-        imageIV.setImageResource(image);
+        imgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(context)
+                        .load(uri)
+                        .centerCrop()
+                        .into(imageIV);
+            }
+        });
     }
 
     private String listBahantoString(String[] data){

@@ -100,14 +100,6 @@ public class Profil extends Fragment {
         layoutManager = new GridLayoutManager(this.getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
 
-//        data = new ArrayList<>();
-//        for (int i = 0; i < ItemResepProfil.title.length; i++){
-//            data.add(new ModelItemResepProfil(
-//                    ItemResepProfil.title[i],
-//                    ItemResepProfil.category[i],
-//                    ItemResepProfil.image[i]
-//            ));
-//        }
         resepUserArray = new ArrayList<>();
 
         adapterResepProfil = new AdapterResepProfil(resepUserArray, context);
@@ -125,6 +117,7 @@ public class Profil extends Fragment {
         getUserResep.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                resepUserArray.clear();
                 for (DataSnapshot x : snapshot.getChildren()){
                     ResepModel resep = new ResepModel();
                     resep.setNama(x.child("nama").getValue().toString());
@@ -135,6 +128,7 @@ public class Profil extends Fragment {
                     resep.setLangkah((ArrayList<String>) x.child("bahan").getValue());
                     resepUserArray.add(resep);
                 }
+                adapterResepProfil.notifyDataSetChanged();
             }
 
             @Override
