@@ -1,10 +1,9 @@
-package com.udinus.uas4506_11743_11758_11773_11774_12098.Activity;
+package com.udinus.uas4506_11743_11758_11773_11774_12098.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment.Add;

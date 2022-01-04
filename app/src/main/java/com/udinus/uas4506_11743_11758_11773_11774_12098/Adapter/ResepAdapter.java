@@ -14,7 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.udinus.uas4506_11743_11758_11773_11774_12098.Activity.DetailResep;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.View.DetailResep;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.Resep;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 

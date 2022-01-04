@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,47 +22,47 @@ import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
 import java.util.ArrayList;
 
-public class AdapterResepProfil extends RecyclerView.Adapter<AdapterResepProfil.ViewHolder> {
+import de.hdodenhof.circleimageview.CircleImageView;
 
+public class AdapterSearchResep extends RecyclerView.Adapter<AdapterSearchResep.ViewHolder> {
     ArrayList<ResepModel> dataItem;
     Context context;
     FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
 
-    public AdapterResepProfil(ArrayList<ResepModel> data, Context context){
+    public AdapterSearchResep(ArrayList<ResepModel> data, Context context){
         this.dataItem = data;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public AdapterResepProfil.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_resep_profil, parent, false);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.search_list, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterResepProfil.ViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         StorageReference imgRef = firebaseStorage.getReferenceFromUrl(dataItem.get(position).getImage());
         ResepModel resep = dataItem.get(position);
 
-        TextView text_title = holder.textTitle;
-        TextView text_category = holder.textCategory;
-        ImageView image_resep = holder.imageResep;
+        TextView nama = holder.nama;
+        TextView kategori = holder.kategori;
+        TextView author = holder.author;
+        CircleImageView imageResep = holder.imageResep;
         CardView cardView = holder.cardView;
 
-        // Set data to view
-        text_title.setText(resep.getNama());
-        text_category.setText(resep.getKategori());
+        nama.setText(resep.getNama());
+        kategori.setText(resep.getKategori());
+        author.setText("Oleh : "+resep.getAuthor());
 
-        // Get image from firebase
         imgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Glide.with(context)
                         .load(uri)
                         .centerCrop()
-                        .into(image_resep);
+                        .into(imageResep);
             }
         });
 
@@ -79,7 +78,6 @@ public class AdapterResepProfil extends RecyclerView.Adapter<AdapterResepProfil.
                 context.startActivity(intent);
             }
         });
-
     }
 
     @Override
@@ -87,20 +85,25 @@ public class AdapterResepProfil extends RecyclerView.Adapter<AdapterResepProfil.
         return dataItem.size();
     }
 
+    public void filterResep(ArrayList<ResepModel> filteredArrayResep){
+        dataItem = filteredArrayResep;
+        notifyDataSetChanged();
+    }
+
+
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView textTitle;
-        TextView textCategory;
-        ImageView imageResep;
+        TextView nama, kategori, author;
+        CircleImageView imageResep;
         CardView cardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            textTitle = itemView.findViewById(R.id.title_resep);
-            textCategory = itemView.findViewById(R.id.category_resep);
-            imageResep = itemView.findViewById(R.id.img_resep);
-            cardView = itemView.findViewById(R.id.cardResep);
+            nama = itemView.findViewById(R.id.nama_resep_search);
+            kategori = itemView.findViewById(R.id.kategori_resep_search);
+            author = itemView.findViewById(R.id.author_resep_search);
+            imageResep = itemView.findViewById(R.id.img_resep_search);
+            cardView = itemView.findViewById(R.id.cardViewSearch);
         }
     }
-
 }

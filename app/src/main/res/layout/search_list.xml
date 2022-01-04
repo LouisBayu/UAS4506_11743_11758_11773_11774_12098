@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="1dp"
-    android:id="@+id/cvListSearch">
+    android:layout_margin="1dp">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
@@ -24,16 +24,14 @@
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
             android:paddingRight="20dp"
-            android:paddingBottom="10dp"
-            android:onClick="clickDetail">
+            android:paddingBottom="10dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img_resep_search"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:scaleType="centerCrop"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/ic_launcher" />
+                android:scaleType="centerCrop"/>
 
             <TextView
                 android:id="@+id/nama_resep_search"
@@ -43,8 +41,8 @@
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="5dp"
                 android:layout_toEndOf="@id/img_resep_search"
-                android:text="Nama"
                 android:fontFamily="@font/raleway_bold"
+                android:text="Nama"
                 android:textColor="@color/orangeTextHeading"
                 android:textSize="18sp" />
 
@@ -58,8 +56,8 @@
                 android:layout_marginBottom="10dp"
                 android:layout_toEndOf="@id/img_resep_search"
                 android:ellipsize="end"
-                android:text="Kategori"
                 android:fontFamily="@font/raleway_medium"
+                android:text="Kategori"
                 android:textColor="@color/brownText"
                 android:textSize="12sp" />
 
@@ -69,12 +67,12 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/kategori_resep_search"
                 android:layout_marginLeft="15dp"
-                android:layout_marginRight="40dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginRight="40dp"
                 android:layout_toEndOf="@id/img_resep_search"
                 android:ellipsize="end"
-                android:text="Author"
                 android:fontFamily="@font/raleway_bold"
+                android:text="Author"
                 android:textColor="@color/brownText"
                 android:textSize="14sp" />
 

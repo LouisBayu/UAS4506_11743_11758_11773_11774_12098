@@ -10,35 +10,23 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-<!--    <androidx.appcompat.widget.SearchView-->
-<!--        android:id="@+id/search_view"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:layout_marginStart="20dp"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:layout_marginEnd="20dp"-->
-<!--        android:layout_marginBottom="8dp"-->
-<!--        android:background="@drawable/searchbar"-->
-<!--        android:clickable="true">-->
-<!--    </androidx.appcompat.widget.SearchView>-->
-
     <EditText
         android:id="@+id/search_view"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:ems="20"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/searchbar"
+        android:ems="20"
+        android:fontFamily="@font/raleway_medium"
         android:hint="Cari resep"
         android:inputType="text"
-        android:paddingBottom="10dp"
         android:paddingLeft="10dp"
-        android:paddingRight="60dp"
         android:paddingTop="10dp"
+        android:paddingRight="60dp"
+        android:paddingBottom="10dp"
         android:textColor="@color/orangeTextHeading"
-        android:fontFamily="@font/raleway_medium"
         android:textSize="18sp" />
 
     <ImageButton
@@ -118,27 +106,27 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/semuaResep"
+        android:id="@+id/tvHasil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:text="Semua Resep"
         android:layout_below="@id/cardSearch"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
         android:fontFamily="@font/raleway_bold"
+        android:gravity="left"
+        android:text="Semua Resep"
         android:textColor="@color/brownText"
-        android:textSize="20sp"
-        android:gravity="left" />
+        android:textSize="20sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/viewCariResep"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/semuaResep"
+        android:layout_below="@id/tvHasil"
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="15dp">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_marginEnd="15dp"
+        android:clipToPadding="true"></androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

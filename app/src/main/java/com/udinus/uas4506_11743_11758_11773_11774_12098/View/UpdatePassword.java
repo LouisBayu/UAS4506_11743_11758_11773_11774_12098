@@ -1,10 +1,9 @@
-package com.udinus.uas4506_11743_11758_11773_11774_12098.Activity;
+package com.udinus.uas4506_11743_11758_11773_11774_12098.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;

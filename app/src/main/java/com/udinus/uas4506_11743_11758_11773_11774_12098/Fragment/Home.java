@@ -1,14 +1,12 @@
 package com.udinus.uas4506_11743_11758_11773_11774_12098.Fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -16,8 +14,6 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -28,19 +24,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.auth.User;
 import com.google.firebase.storage.FirebaseStorage;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.Activity.AddResep;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Adapter.ResepAdapter;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.Kategori_Tab;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.Resep;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.UserModel;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
 import java.util.ArrayList;
 import com.google.firebase.storage.StorageReference;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.ui.main.Frag1;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.ui.main.SectionsPagerAdapter;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 

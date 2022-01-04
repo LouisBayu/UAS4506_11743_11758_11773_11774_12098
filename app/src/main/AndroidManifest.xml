@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" >
         <activity
-            android:name=".Activity.HelpSupport"
+            android:name=".View.HelpSupport"
             android:exported="true" />
         <activity
             android:name=".Kategori_Tab"
@@ -21,56 +21,56 @@
             android:label="@string/title_activity_kategori_tab"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.UpdateFullName"
+            android:name=".View.UpdateFullName"
             android:exported="true" />
         <activity
-            android:name=".Activity.UpdateEmail"
+            android:name=".View.UpdateEmail"
             android:exported="true" />
         <activity
-            android:name=".Activity.UpdatePassword"
+            android:name=".View.UpdatePassword"
             android:exported="true" />
         <activity
-            android:name=".Activity.UpdatePhone"
+            android:name=".View.UpdatePhone"
             android:exported="true" />
         <activity
-            android:name=".Activity.SendOTP"
+            android:name=".View.SendOTP"
             android:exported="true" />
         <activity
-            android:name=".Activity.MainActivity"
+            android:name=".View.MainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Activity.AddResep"
+            android:name=".View.AddResep"
             android:exported="false" />
         <activity
-            android:name=".Activity.DetailResep"
+            android:name=".View.DetailResep"
             android:exported="false" />
         <activity
-            android:name=".Activity.EditProfil"
+            android:name=".View.EditProfil"
             android:exported="false" />
         <activity
-            android:name=".Activity.RegisterSuccess"
+            android:name=".View.RegisterSuccess"
             android:exported="false" />
         <activity
-            android:name=".Activity.Register"
+            android:name=".View.Register"
             android:exported="false" />
         <activity
-            android:name=".Activity.ResetCode"
+            android:name=".View.ResetCode"
             android:exported="false" />
         <activity
-            android:name=".Activity.ResetPassword"
+            android:name=".View.ResetPassword"
             android:exported="false" />
         <activity
-            android:name=".Activity.ForgotPassword"
+            android:name=".View.ForgotPassword"
             android:exported="false" />
         <activity
-            android:name=".Activity.LoginSuccess"
+            android:name=".View.LoginSuccess"
             android:exported="false" />
         <activity
-            android:name=".Activity.ResetPasswordSuccess"
+            android:name=".View.ResetPasswordSuccess"
             android:exported="false" />
         <activity
-            android:name=".Activity.Splashscreen"
+            android:name=".View.Splashscreen"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -79,10 +79,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.OnBoarding"
+            android:name=".View.OnBoarding"
             android:exported="false" />
         <activity
-            android:name=".Activity.WelcomebackLogin"
+            android:name=".View.WelcomebackLogin"
             android:exported="false" />
 
         <meta-data

@@ -1,4 +1,4 @@
-package com.udinus.uas4506_11743_11758_11773_11774_12098.Activity;
+package com.udinus.uas4506_11743_11758_11773_11774_12098.View;
 
 import android.content.Intent;
 import android.content.IntentFilter;

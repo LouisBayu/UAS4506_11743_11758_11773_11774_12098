@@ -1,4 +1,4 @@
-package com.udinus.uas4506_11743_11758_11773_11774_12098.Activity;
+package com.udinus.uas4506_11743_11758_11773_11774_12098.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,12 +11,12 @@ import android.view.WindowManager;
 
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
-public class ResetPasswordSuccess extends AppCompatActivity {
+public class RegisterSuccess extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reset_password_success);
+        setContentView(R.layout.activity_register_success);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         if (Build.VERSION.SDK_INT >= 21) {
             Window window = this.getWindow();
@@ -27,7 +27,7 @@ public class ResetPasswordSuccess extends AppCompatActivity {
     }
 
     public void onClickLogin(View view) {
-        Intent i = new Intent(ResetPasswordSuccess.this, WelcomebackLogin.class);
+        Intent i = new Intent(RegisterSuccess.this, WelcomebackLogin.class);
         startActivity(i);
         finish();
     }

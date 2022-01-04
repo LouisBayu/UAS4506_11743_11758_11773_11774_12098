@@ -1,4 +1,4 @@
-package com.udinus.uas4506_11743_11758_11773_11774_12098.Activity;
+package com.udinus.uas4506_11743_11758_11773_11774_12098.View;
 
 import android.content.Context;
 import android.content.Intent;
@@ -28,8 +28,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.UserModel;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
-
-import java.util.ArrayList;
 
 public class ForgotPassword extends AppCompatActivity {
 

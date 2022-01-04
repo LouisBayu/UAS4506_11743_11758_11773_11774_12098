@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.SendOTP"
+    tools:context=".View.SendOTP"
     android:background="@color/bg"
     android:orientation="vertical"
     android:paddingRight="30dp"

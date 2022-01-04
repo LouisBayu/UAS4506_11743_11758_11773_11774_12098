@@ -1,7 +1,6 @@
-package com.udinus.uas4506_11743_11758_11773_11774_12098.Activity;
+package com.udinus.uas4506_11743_11758_11773_11774_12098.View;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,10 +20,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
 
-public class UpdatePhone extends AppCompatActivity {
+public class UpdateFullName extends AppCompatActivity {
 
-    TextInputEditText phoneEditText;
-    TextView changePhone;
+    TextInputEditText fullnameEditText;
+    TextView changeFullName;
     SharedPreferences sharedPreferences;
     String username;
     FirebaseDatabase db;
@@ -33,7 +32,7 @@ public class UpdatePhone extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_phone);
+        setContentView(R.layout.activity_update_full_name);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         if (Build.VERSION.SDK_INT >= 21) {
             Window window = this.getWindow();
@@ -43,11 +42,12 @@ public class UpdatePhone extends AppCompatActivity {
         }
         initComponent();
 
+
     }
 
     private void initComponent(){
-        phoneEditText = findViewById(R.id.phoneEditText);
-        changePhone = findViewById(R.id.changePhone);
+        fullnameEditText = findViewById(R.id.fullnameEditText);
+        changeFullName = findViewById(R.id.changeFullName);
 
         sharedPreferences = getSharedPreferences("appSharedPref", Context.MODE_PRIVATE);
         username = sharedPreferences.getString("key_username", null);
@@ -56,8 +56,8 @@ public class UpdatePhone extends AppCompatActivity {
     }
 
     public void onClickSave(View view){
-        String newPhone = phoneEditText.getText().toString().trim();
-        dbReference.child(username).child("phone").setValue(newPhone).addOnCompleteListener(new OnCompleteListener<Void>() {
+        String newFullname = fullnameEditText.getText().toString().trim();
+        dbReference.child(username).child("fullname").setValue(newFullname).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){

@@ -1,6 +1,4 @@
-package com.udinus.uas4506_11743_11758_11773_11774_12098.Activity;
-
-import static com.udinus.uas4506_11743_11758_11773_11774_12098.R.layout.*;
+package com.udinus.uas4506_11743_11758_11773_11774_12098.View;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,12 +8,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.style.UpdateLayout;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
