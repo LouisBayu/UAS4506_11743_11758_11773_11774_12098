@@ -113,12 +113,13 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <ImageView
+                        <com.makeramen.roundedimageview.RoundedImageView
                             android:layout_width="190dp"
                             android:layout_height="220dp"
                             android:scaleType="centerCrop"
+                            app:riv_corner_radius="25dp"
                             android:src="@drawable/noval">
-                        </ImageView>
+                        </com.makeramen.roundedimageview.RoundedImageView>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -152,12 +153,13 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <ImageView
+                        <com.makeramen.roundedimageview.RoundedImageView
                             android:layout_width="190dp"
                             android:layout_height="220dp"
                             android:src="@drawable/arsya"
+                            app:riv_corner_radius="25dp"
                             android:scaleType="centerCrop">
-                        </ImageView>
+                        </com.makeramen.roundedimageview.RoundedImageView>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -192,12 +194,13 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <ImageView
+                        <com.makeramen.roundedimageview.RoundedImageView
                             android:layout_width="190dp"
                             android:layout_height="220dp"
                             android:src="@drawable/dion"
+                            app:riv_corner_radius="25dp"
                             android:scaleType="centerCrop">
-                        </ImageView>
+                        </com.makeramen.roundedimageview.RoundedImageView>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -232,12 +235,13 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <ImageView
+                        <com.makeramen.roundedimageview.RoundedImageView
                             android:layout_width="190dp"
                             android:layout_height="220dp"
                             android:src="@drawable/khakim"
+                            app:riv_corner_radius="25dp"
                             android:scaleType="centerCrop">
-                        </ImageView>
+                        </com.makeramen.roundedimageview.RoundedImageView>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -273,12 +277,13 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <ImageView
+                        <com.makeramen.roundedimageview.RoundedImageView
                             android:layout_width="190dp"
                             android:layout_height="220dp"
                             android:src="@drawable/akbar"
+                            app:riv_corner_radius="25dp"
                             android:scaleType="centerCrop">
-                        </ImageView>
+                        </com.makeramen.roundedimageview.RoundedImageView>
 
                         <TextView
                             android:layout_width="wrap_content"
