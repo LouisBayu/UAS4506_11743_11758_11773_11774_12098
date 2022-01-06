@@ -44,9 +44,7 @@ public class Search extends Fragment {
     ArrayList<ResepModel> resepArray;
     Context context;
     DatabaseReference resepRef;
-    StorageReference storageReference;
     AdapterSearchResep adapterSearch;
-
 
 
     @Nullable
@@ -68,7 +66,6 @@ public class Search extends Fragment {
         mSearchField = view.findViewById(R.id.search_view);
         tvHasil = view.findViewById(R.id.tvHasil);
         resepRef = FirebaseDatabase.getInstance().getReference("resep");
-        storageReference = FirebaseStorage.getInstance().getReference();
         resepArray = new ArrayList<>();
 
         mSearchField.addTextChangedListener(new TextWatcher() {

@@ -45,8 +45,8 @@
 
     <string name="searchlocation"><u>Cari Sekarang</u></string>
 
-    <string name="aboutApp"><b>Resep Dapurku</b> merupakan sebuah aplikasi memasakyang memudahkan para pengguna dalam menemukan resep makanan.
-        Selain menemukan resep, pengguna juga dapat membagikan resep buatannya. Nantinya resep yang sudah dibuat dapat menjadi referensi pengguna lain.</string>
+    <string name="aboutApp"><b>Resep Dapurku</b> merupakan sebuah aplikasi sharing resep masakan yang memudahkan para pengguna dalam mencari resep makanan.
+        Selain menemukan resep, pengguna juga dapat membagikan resep buatannya yang nantinya dapat dijadikan referensi pengguna lain.</string>
 
     <string-array name="kategori">
         <item>Olahan Daging</item>

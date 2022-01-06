@@ -77,12 +77,13 @@
                 android:textSize="14sp" />
 
             <ImageButton
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
+                android:id="@+id/favorite_resep"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_alignParentEnd="true"
-                android:background="@drawable/bookmark">
-            </ImageButton>
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_not_bookmarked"></ImageButton>
 
         </RelativeLayout>
 

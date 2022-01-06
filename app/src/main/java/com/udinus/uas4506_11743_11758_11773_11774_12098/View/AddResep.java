@@ -68,51 +68,48 @@ public class AddResep extends AppCompatActivity {
         initComponent();
         addViewBahan();
         addViewLangkah();
-        add();
 
     }
 
     void add(){
-        Resep baksoSapiRica = new Resep();
-        baksoSapiRica.setAuthor("kyurise");
-        baksoSapiRica.setNama("Bakso Sapi Rica");
-        baksoSapiRica.setKategori("Olahan Daging");
-        baksoSapiRica.setImage(R.drawable.baksosapirica);
-        String[] bahan40 = {
-                "12 butir bakso sapi. Sayat menjadi 4 bagian tanpa terputus. Goreng dan sisihkan",
-                "1 lembar daun jeruk",
-                "1 genggam kemangi",
-                "1 batang serai, ikat lalu geprek",
-                "1 ruas  jahe, geprek",
-                "Bumbu rica-rica (blender kasar) :",
-                "3 siung bawang merah",
-                "5 siung bawang putih",
-                "7 buah cabai merah",
-                "3 buah cabai rawit",
-                "1 butir kemiri",
-                "Garam, gula, penyedap secukupnya",
-                "Sedikit air" };
-        baksoSapiRica.setBahan(bahan40);
-        String[] langkah40 = {
-                "Siapkan wajan dengan minyak secukupnya. Tumis bahan rica-rica sampai harum, masukkan serai, jahe, daun jeruk.",
-                "Masukkan bakso, aduk-aduk sampai rata, masukkan kemangi, garam, gula, penyedap, kecap manis. Diaduk rata. Kemudian tunggu sampai bumbu meresap. Masukkan sedikit air, masak sampai air menyusut.",
-                "Baso rica-rica siap disantap!"};
-        baksoSapiRica.setLangkah(langkah40);
+        Resep eskuwut = new Resep();
+        eskuwut.setAuthor("kyurise");
+        eskuwut.setNama("Es Kuwut");
+        eskuwut.setKategori("Minuman");
+        eskuwut.setImage(R.drawable.eskuwut);
+        String[] bahan8 = {
+                "1 buah kelapa muda, serut daging kelapanya",
+                "1/4 buah melon, serut dagingnya memanjang atau bulat-bulat",
+                "2 sendok makan biji selasih yang telah direndam dengan air panas",
+                "2 buah jeruk nipis diperas airnya",
+                "Air kelapa muda secukupnya",
+                "Sirup rasa melon secukupnya",
+                "Es batu secukupnya",
+                "Irisan jeruk nipis secukupnya"};
+        eskuwut.setBahan(bahan8);
+        String[] langkah8 = {
+                "Siapkan semua bahan yang dibutuhkan untuk membuat es kuwut",
+                "Siapkan gelas saji lalu masukkan parutan kelapa dan melon secukupnya",
+                "Tambahkan biji selasih dan tuang air kelapa sampai 2/3 tinggi gelas.",
+                "Beri air perasan jeruk nipis dan sirup melon sesuai selera.",
+                "Baru tambahkan es batu sampai gelas penuh dan irisan jeruk nipis ke dalam gelas",
+                "Aduk rata dan es kuwut siap disajikan selagi dingin."};
+        eskuwut.setLangkah(langkah8);
         
-        Uri img = drawableToUri(baksoSapiRica.getImage());
+        Uri img = drawableToUri(eskuwut.getImage());
         if (img != null){
-            String ref = baksoSapiRica.getNama() + "-pic.jpg";
+            String ref = eskuwut.getNama() + "-pic.jpg";
 
             StorageReference imgFileRef = mStorageReference.child(ref);
 
             imgFileRef.putFile(img).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    resepModel.setNama(baksoSapiRica.getNama());
-                    resepModel.setAuthor(baksoSapiRica.getAuthor());
-                    resepModel.setKategori(baksoSapiRica.getKategori());
-                    resepModel.setBahan(listToArray(baksoSapiRica.getBahan()));
-                    resepModel.setLangkah(listToArray(baksoSapiRica.getLangkah()));
+                    resepModel.setNama(eskuwut.getNama());
+                    resepModel.setAuthor(eskuwut.getAuthor());
+                    resepModel.setKategori(eskuwut.getKategori());
+                    resepModel.setBahan(listToArray(eskuwut.getBahan()));
+                    resepModel.setLangkah(listToArray(eskuwut.getLangkah()));
                     resepModel.setImage("gs://uas-ppb4506.appspot.com/resep/"+ref);
 
                     String key = resepModel.getNama().toLowerCase();
@@ -136,13 +133,7 @@ public class AddResep extends AppCompatActivity {
 
     }
 
-    private ArrayList<String> listToArray(String[] list){
-        ArrayList<String> arrayList = new ArrayList<>();
-        for (int i=0; i<list.length;i++){
-            arrayList.add(list[i]);
-        }
-        return arrayList;
-    }
+
 
     private void initComponent(){
         ivREsep = findViewById(R.id.addImage);
@@ -186,6 +177,14 @@ public class AddResep extends AppCompatActivity {
         mStorageReference = FirebaseStorage.getInstance().getReference("resep");
 
 
+    }
+
+    private ArrayList<String> listToArray(String[] list){
+        ArrayList<String> arrayList = new ArrayList<>();
+        for (int i=0; i<list.length;i++){
+            arrayList.add(list[i]);
+        }
+        return arrayList;
     }
 
     private void addViewBahan(){
