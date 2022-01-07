@@ -4,7 +4,8 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdkVersion 31
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.udinus.uas4506_11743_11758_11773_11774_12098"
@@ -47,6 +48,7 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:8.0.0'
     implementation 'com.firebaseui:firebase-ui-storage:8.0.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.android.support:design:31.0.0'
 
 
     //noinspection GradleCompatible
