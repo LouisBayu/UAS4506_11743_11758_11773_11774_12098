@@ -4,8 +4,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
-    buildToolsVersion "30.0.3"
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.udinus.uas4506_11743_11758_11773_11774_12098"

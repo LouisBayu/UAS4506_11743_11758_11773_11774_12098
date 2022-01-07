@@ -7,44 +7,32 @@
     android:background="@color/bg"
     tools:context=".View.FragmentMenu.Home"
     android:orientation="vertical">
-
-
-    <!-- TODO: Update blank fragment layout -->
+    
     <LinearLayout
         android:id="@+id/not_empty_bookmark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
+
         <TextView
             android:id="@+id/bookText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bookmark"
+            android:text="Resep Tersimpan"
+            android:gravity="center"
             android:layout_margin="20dp"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:textColor="@color/orangeTextHeading"
             android:textStyle="bold"
             android:fontFamily="@font/raleway_bold"/>
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="5dp"
-            android:background="@color/orangeTextHeading"/>
-        <TextView
-            android:id="@+id/semuaText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Resep Tersimpan"
-            android:textSize="18sp"
-            android:layout_margin="20dp"
-            android:fontFamily="@font/raleway_semibold"
-            android:textColor="@color/orangeTextHeading"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_bookmark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="15dp"/>
     </LinearLayout>
 
@@ -53,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="invisible"
         android:gravity="center">
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/logo_simpanResep"

@@ -113,10 +113,10 @@
                         android:orientation="vertical">
 
                         <com.makeramen.roundedimageview.RoundedImageView
-                            android:layout_width="190dp"
+                            android:layout_width="171dp"
                             android:layout_height="220dp"
                             android:scaleType="centerCrop"
-                            app:riv_corner_radius="25dp"
+                            app:riv_corner_radius="12dp"
                             android:src="@drawable/noval">
                         </com.makeramen.roundedimageview.RoundedImageView>
 
@@ -152,10 +152,10 @@
                         android:orientation="vertical">
 
                         <com.makeramen.roundedimageview.RoundedImageView
-                            android:layout_width="190dp"
+                            android:layout_width="171dp"
                             android:layout_height="220dp"
                             android:src="@drawable/arsya"
-                            app:riv_corner_radius="25dp"
+                            app:riv_corner_radius="12dp"
                             android:scaleType="centerCrop">
                         </com.makeramen.roundedimageview.RoundedImageView>
 
@@ -192,10 +192,10 @@
                         android:orientation="vertical">
 
                         <com.makeramen.roundedimageview.RoundedImageView
-                            android:layout_width="190dp"
+                            android:layout_width="171dp"
                             android:layout_height="220dp"
                             android:src="@drawable/dion"
-                            app:riv_corner_radius="25dp"
+                            app:riv_corner_radius="12dp"
                             android:scaleType="centerCrop">
                         </com.makeramen.roundedimageview.RoundedImageView>
 
@@ -232,10 +232,10 @@
                         android:orientation="vertical">
 
                         <com.makeramen.roundedimageview.RoundedImageView
-                            android:layout_width="190dp"
+                            android:layout_width="171dp"
                             android:layout_height="220dp"
                             android:src="@drawable/khakim"
-                            app:riv_corner_radius="25dp"
+                            app:riv_corner_radius="12dp"
                             android:scaleType="centerCrop">
                         </com.makeramen.roundedimageview.RoundedImageView>
 
@@ -274,10 +274,10 @@
                         android:orientation="vertical">
 
                         <com.makeramen.roundedimageview.RoundedImageView
-                            android:layout_width="190dp"
+                            android:layout_width="171dp"
                             android:layout_height="220dp"
                             android:src="@drawable/akbar"
-                            app:riv_corner_radius="25dp"
+                            app:riv_corner_radius="12dp"
                             android:scaleType="centerCrop">
                         </com.makeramen.roundedimageview.RoundedImageView>
 

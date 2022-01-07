@@ -2,6 +2,8 @@ package com.udinus.uas4506_11743_11758_11773_11774_12098.View.FragmentMenu;
 
 import static java.util.Objects.requireNonNull;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
@@ -46,11 +48,10 @@ public class Search extends Fragment {
     DatabaseReference resepRef;
     AdapterSearchResep adapterSearch;
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {   
+                             Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
         initComponent(view);

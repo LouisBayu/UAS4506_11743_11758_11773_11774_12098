@@ -28,6 +28,7 @@ import com.google.firebase.storage.StorageReference;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.View.DetailResep;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.ResepModel;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.View.FragmentMenu.Search;
 
 import java.util.ArrayList;
 
@@ -168,7 +169,6 @@ public class AdapterSearchResep extends RecyclerView.Adapter<AdapterSearchResep.
             }
         });
     }
-
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView nama, kategori, author;
