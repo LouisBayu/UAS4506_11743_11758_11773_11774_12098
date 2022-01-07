@@ -1,6 +1,7 @@
 package com.udinus.uas4506_11743_11758_11773_11774_12098.View.FragmentMenu;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -18,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -142,17 +145,31 @@ public class Profil extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                auth.signOut();
-                Intent i = new Intent(getActivity(), WelcomebackLogin.class);
-                startActivity(i);
-                getActivity().finish();
-                SharedPreferences.Editor editor = sharedPreferences.edit();
+                new MaterialAlertDialogBuilder(context)
+                        .setTitle("Peringatan!")
+                        .setMessage("Apakah anda yakin akan Logout dari akun Anda?")
+                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                auth.signOut();
+                                Intent intent = new Intent(getActivity(), WelcomebackLogin.class);
+                                startActivity(intent);
+                                getActivity().finish();
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                editor.remove("key_keep_login");
-                editor.apply();
+                                editor.remove("key_keep_login");
+                                editor.apply();
+                            }
+                        }).setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                }).show();
             }
         });
     }
+
+
 
     private void getDataProfil(){
         String email = sharedPreferences.getString("key_email", null);
@@ -175,6 +192,7 @@ public class Profil extends Fragment {
             }
         });
     }
+
 
 
     private void loadImgProfile(String ref){

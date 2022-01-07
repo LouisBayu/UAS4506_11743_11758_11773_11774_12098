@@ -63,8 +63,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"
         android:src="@drawable/profile_pic"
-        app:civ_border_color="@color/orangeTextHeading"
-        app:civ_border_width="1dp" />
+        app:civ_border_color="@color/orangeTextHeading"/>
 
     <LinearLayout
         android:layout_width="match_parent"

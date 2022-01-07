@@ -2,13 +2,10 @@ package com.udinus.uas4506_11743_11758_11773_11774_12098.View.FragmentMenu;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -16,22 +13,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.Adapter.AdapterResepProfil;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.Adapter.AdapterResepBookmark;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.ResepModel;
 import com.google.android.material.button.MaterialButton;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.View.AddResep;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.View.EditProfil;
-import com.udinus.uas4506_11743_11758_11773_11774_12098.View.SimpanResep;
 
 import java.util.ArrayList;
 
@@ -45,10 +37,8 @@ public class Tersimpan extends Fragment {
     SharedPreferences sharedPreferences;
     DatabaseReference bookmarkRef;
     StorageReference storageReference;
-    AdapterResepProfil adapterResepProfil;
+    AdapterResepBookmark adapterResepProfil;
     LinearLayout emptyView, notEmptyView;
-
-    MaterialButton btnSimpanResep;
 
     @Nullable
     @Override
@@ -81,7 +71,7 @@ public class Tersimpan extends Fragment {
         layoutManager = new GridLayoutManager(this.getContext(), 2);
         rvBookmark.setLayoutManager(layoutManager);
 
-        adapterResepProfil = new AdapterResepProfil(resepBookmarked, getActivity());
+        adapterResepProfil = new AdapterResepBookmark(resepBookmarked, getActivity());
         rvBookmark.setAdapter(adapterResepProfil);
     }
 
