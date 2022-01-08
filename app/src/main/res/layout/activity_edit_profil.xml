@@ -300,21 +300,21 @@
         android:onClick="onClickHelpSupport"/>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/hapusAkun"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        app:cornerRadius="5dp"
-        app:strokeWidth="2dp"
-        app:strokeColor="#C62121"
-        android:backgroundTint="@color/bg"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="30dp"
-        android:textAllCaps="false"
+        android:backgroundTint="@color/bg"
         android:fontFamily="@font/raleway_bold"
         android:text="Delete Account"
-        android:textSize="20sp"
+        android:textAllCaps="false"
         android:textColor="#C62121"
-        android:onClick="onClickDeleteAccount"/>
+        android:textSize="20sp"
+        app:cornerRadius="5dp"
+        app:strokeColor="#C62121"
+        app:strokeWidth="2dp" />
 
 </RelativeLayout>

@@ -90,13 +90,13 @@
             app:layout_constraintTop_toBottomOf="@id/cardText1" />
 
         <TextView
+            android:id="@+id/onClickMaps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/raleway_bold"
             android:gravity="fill_horizontal"
-            android:onClick="onClickAdd"
             android:text="@string/searchlocation"
             android:textColor="@color/orangeTextHeading"
             android:textSize="17sp"

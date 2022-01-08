@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -33,6 +34,7 @@ import com.google.firebase.storage.StorageReference;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Adapter.AdapterSearchResep;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.ResepModel;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.View.MapsActivity;
 
 import java.util.ArrayList;
 
@@ -41,7 +43,7 @@ import javax.annotation.Nullable;
 public class Search extends Fragment {
 
     EditText mSearchField;
-    TextView tvHasil;
+    TextView tvHasil, onClickMaps;
     RecyclerView rvSearch;
     ArrayList<ResepModel> resepArray;
     Context context;
@@ -66,9 +68,16 @@ public class Search extends Fragment {
         rvSearch = (RecyclerView)view.findViewById(R.id.viewCariResep);
         mSearchField = view.findViewById(R.id.search_view);
         tvHasil = view.findViewById(R.id.tvHasil);
+        onClickMaps = view.findViewById(R.id.onClickMaps);
         resepRef = FirebaseDatabase.getInstance().getReference("resep");
         resepArray = new ArrayList<>();
 
+        onClickMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(context, MapsActivity.class));
+            }
+        });
         mSearchField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

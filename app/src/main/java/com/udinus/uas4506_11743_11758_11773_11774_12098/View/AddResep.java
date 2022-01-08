@@ -71,67 +71,67 @@ public class AddResep extends AppCompatActivity {
 
     }
 
-    void add(){
-        Resep eskuwut = new Resep();
-        eskuwut.setAuthor("kyurise");
-        eskuwut.setNama("Es Kuwut");
-        eskuwut.setKategori("Minuman");
-        eskuwut.setImage(R.drawable.eskuwut);
-        String[] bahan8 = {
-                "1 buah kelapa muda, serut daging kelapanya",
-                "1/4 buah melon, serut dagingnya memanjang atau bulat-bulat",
-                "2 sendok makan biji selasih yang telah direndam dengan air panas",
-                "2 buah jeruk nipis diperas airnya",
-                "Air kelapa muda secukupnya",
-                "Sirup rasa melon secukupnya",
-                "Es batu secukupnya",
-                "Irisan jeruk nipis secukupnya"};
-        eskuwut.setBahan(bahan8);
-        String[] langkah8 = {
-                "Siapkan semua bahan yang dibutuhkan untuk membuat es kuwut",
-                "Siapkan gelas saji lalu masukkan parutan kelapa dan melon secukupnya",
-                "Tambahkan biji selasih dan tuang air kelapa sampai 2/3 tinggi gelas.",
-                "Beri air perasan jeruk nipis dan sirup melon sesuai selera.",
-                "Baru tambahkan es batu sampai gelas penuh dan irisan jeruk nipis ke dalam gelas",
-                "Aduk rata dan es kuwut siap disajikan selagi dingin."};
-        eskuwut.setLangkah(langkah8);
-        
-        Uri img = drawableToUri(eskuwut.getImage());
-        if (img != null){
-            String ref = eskuwut.getNama() + "-pic.jpg";
-
-            StorageReference imgFileRef = mStorageReference.child(ref);
-
-            imgFileRef.putFile(img).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    resepModel.setNama(eskuwut.getNama());
-                    resepModel.setAuthor(eskuwut.getAuthor());
-                    resepModel.setKategori(eskuwut.getKategori());
-                    resepModel.setBahan(listToArray(eskuwut.getBahan()));
-                    resepModel.setLangkah(listToArray(eskuwut.getLangkah()));
-                    resepModel.setImage("gs://uas-ppb4506.appspot.com/resep/"+ref);
-
-                    String key = resepModel.getNama().toLowerCase();
-                    mDatabaseReference.child(key).setValue(resepModel);
-                    arrayToFirebase(resepModel.getBahan(),key,"bahan");
-                    arrayToFirebase(resepModel.getLangkah(),key,"langkah");
-
-                    Toast.makeText(AddResep.this, "Berhasil Upload", Toast.LENGTH_SHORT).show();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(AddResep.this, "Upload Gagal!", Toast.LENGTH_SHORT).show();
-                }
-            });
-        } else {
-            Toast.makeText(AddResep.this, "Foto Belum Ditambahkan!", Toast.LENGTH_SHORT).show();
-        }
-
-
-
-    }
+//    void add(){
+//        Resep eskuwut = new Resep();
+//        eskuwut.setAuthor("kyurise");
+//        eskuwut.setNama("Es Kuwut");
+//        eskuwut.setKategori("Minuman");
+//        eskuwut.setImage(R.drawable.eskuwut);
+//        String[] bahan8 = {
+//                "1 buah kelapa muda, serut daging kelapanya",
+//                "1/4 buah melon, serut dagingnya memanjang atau bulat-bulat",
+//                "2 sendok makan biji selasih yang telah direndam dengan air panas",
+//                "2 buah jeruk nipis diperas airnya",
+//                "Air kelapa muda secukupnya",
+//                "Sirup rasa melon secukupnya",
+//                "Es batu secukupnya",
+//                "Irisan jeruk nipis secukupnya"};
+//        eskuwut.setBahan(bahan8);
+//        String[] langkah8 = {
+//                "Siapkan semua bahan yang dibutuhkan untuk membuat es kuwut",
+//                "Siapkan gelas saji lalu masukkan parutan kelapa dan melon secukupnya",
+//                "Tambahkan biji selasih dan tuang air kelapa sampai 2/3 tinggi gelas.",
+//                "Beri air perasan jeruk nipis dan sirup melon sesuai selera.",
+//                "Baru tambahkan es batu sampai gelas penuh dan irisan jeruk nipis ke dalam gelas",
+//                "Aduk rata dan es kuwut siap disajikan selagi dingin."};
+//        eskuwut.setLangkah(langkah8);
+//
+//        Uri img = drawableToUri(eskuwut.getImage());
+//        if (img != null){
+//            String ref = eskuwut.getNama() + "-pic.jpg";
+//
+//            StorageReference imgFileRef = mStorageReference.child(ref);
+//
+//            imgFileRef.putFile(img).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                @Override
+//                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                    resepModel.setNama(eskuwut.getNama());
+//                    resepModel.setAuthor(eskuwut.getAuthor());
+//                    resepModel.setKategori(eskuwut.getKategori());
+//                    resepModel.setBahan(listToArray(eskuwut.getBahan()));
+//                    resepModel.setLangkah(listToArray(eskuwut.getLangkah()));
+//                    resepModel.setImage("gs://uas-ppb4506.appspot.com/resep/"+ref);
+//
+//                    String key = resepModel.getNama().toLowerCase();
+//                    mDatabaseReference.child(key).setValue(resepModel);
+//                    arrayToFirebase(resepModel.getBahan(),key,"bahan");
+//                    arrayToFirebase(resepModel.getLangkah(),key,"langkah");
+//
+//                    Toast.makeText(AddResep.this, "Berhasil Upload", Toast.LENGTH_SHORT).show();
+//                }
+//            }).addOnFailureListener(new OnFailureListener() {
+//                @Override
+//                public void onFailure(@NonNull Exception e) {
+//                    Toast.makeText(AddResep.this, "Upload Gagal!", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//        } else {
+//            Toast.makeText(AddResep.this, "Foto Belum Ditambahkan!", Toast.LENGTH_SHORT).show();
+//        }
+//
+//
+//
+//    }
 
 
 

@@ -1,5 +1,7 @@
 package com.udinus.uas4506_11743_11758_11773_11774_12098.View;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -19,8 +22,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,6 +47,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class EditProfil extends AppCompatActivity{
 
     TextView edtEmail, edtFullname, edtUsername, edtPhone, changePhoto;
+    MaterialButton hapusAkun;
     CircleImageView  imgProfil;
     SharedPreferences sharedPreferences;
     FirebaseDatabase db;
@@ -75,6 +84,7 @@ public class EditProfil extends AppCompatActivity{
         edtUsername = findViewById(R.id.edtUsername);
         edtPhone = findViewById(R.id.edtPhone);
         changePhoto = findViewById(R.id.changePhoto);
+        hapusAkun = findViewById(R.id.hapusAkun);
         context = this;
         user = new UserModel();
         db = FirebaseDatabase.getInstance();
@@ -86,6 +96,29 @@ public class EditProfil extends AppCompatActivity{
             public void onClick(View view) {
                 Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(openGalleryIntent, 1000);
+            }
+        });
+
+        hapusAkun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteAccount();
+            }
+        });
+    }
+
+    private void deleteAccount() {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        final FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        currentUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    startActivity(new Intent(EditProfil.this, WelcomebackLogin.class));
+                    finish();
+                } else {
+                    Log.w(TAG,"Something is wrong!");
+                }
             }
         });
     }

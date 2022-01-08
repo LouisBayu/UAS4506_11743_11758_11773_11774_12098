@@ -20,5 +20,6 @@
     <color name="greytrans">#2F333333</color>
     <color name="brownText">#844a15</color>
     <color name="colorSearch">#E9F8F1</color>
+    <color name="statusbarMaps">#F8F9FA</color>
 
 </resources>
