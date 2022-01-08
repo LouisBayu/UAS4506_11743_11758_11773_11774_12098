@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -49,6 +50,7 @@ public class Search extends Fragment {
     Context context;
     DatabaseReference resepRef;
     AdapterSearchResep adapterSearch;
+    FrameLayout noResult;
 
     @Nullable
     @Override
@@ -68,6 +70,7 @@ public class Search extends Fragment {
         rvSearch = (RecyclerView)view.findViewById(R.id.viewCariResep);
         mSearchField = view.findViewById(R.id.search_view);
         tvHasil = view.findViewById(R.id.tvHasil);
+        noResult = view.findViewById(R.id.no_result);
         onClickMaps = view.findViewById(R.id.onClickMaps);
         resepRef = FirebaseDatabase.getInstance().getReference("resep");
         resepArray = new ArrayList<>();
@@ -110,7 +113,15 @@ public class Search extends Fragment {
             }
         }
 
-        adapterSearch.filterResep(filteredArray);
+        if (filteredArray.size() != 0){
+            adapterSearch.filterResep(filteredArray);
+            rvSearch.setVisibility(View.VISIBLE);
+            noResult.setVisibility(View.GONE);
+        } else {
+            rvSearch.setVisibility(View.GONE);
+            noResult.setVisibility(View.VISIBLE);
+
+        }
     }
 
     private void setRvSearch(){

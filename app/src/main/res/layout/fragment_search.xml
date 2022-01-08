@@ -113,6 +113,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
         android:fontFamily="@font/raleway_bold"
         android:gravity="left"
         android:text="Semua Resep"
@@ -128,5 +129,21 @@
         android:paddingVertical="10dp"
         android:layout_marginTop="10dp"
         android:clipToPadding="false"></androidx.recyclerview.widget.RecyclerView>
+
+    <FrameLayout
+        android:id="@+id/no_result"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/tvHasil"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_semibold"
+            android:text="Tidak Ada Hasil"
+            android:textColor="@color/brownText"
+            android:layout_gravity="center"
+            android:textSize="17sp"/>
+    </FrameLayout>
 
 </RelativeLayout>

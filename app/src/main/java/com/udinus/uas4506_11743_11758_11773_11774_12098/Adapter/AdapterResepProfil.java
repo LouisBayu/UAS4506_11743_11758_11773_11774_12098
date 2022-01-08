@@ -20,6 +20,7 @@ import com.google.firebase.storage.StorageReference;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.View.DetailResep;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.Model.ResepModel;
 import com.udinus.uas4506_11743_11758_11773_11774_12098.R;
+import com.udinus.uas4506_11743_11758_11773_11774_12098.View.DetailResepProfil;
 
 import java.util.ArrayList;
 
@@ -70,7 +71,7 @@ public class AdapterResepProfil extends RecyclerView.Adapter<AdapterResepProfil.
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent( context, DetailResep.class);
+                Intent intent = new Intent( context, DetailResepProfil.class);
                 intent.putExtra("nama",resep.getNama());
                 intent.putExtra("author",resep.getAuthor());
                 intent.putExtra("kategori",resep.getKategori());
