@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.udinus.uas4506_11743_11758_11773_11774_12098" >
+    package="com.udinus.uas4506_11743_11758_11773_11774_12098">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true" >
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".View.SimpanResep"
+            android:exported="true"></activity>
         <activity
             android:name=".View.HelpSupport"
             android:exported="true" />
@@ -44,7 +47,8 @@
             android:exported="false" />
         <activity
             android:name=".View.DetailResep"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName="View.MainActivity"/>
         <activity
             android:name=".View.EditProfil"
             android:exported="false" />

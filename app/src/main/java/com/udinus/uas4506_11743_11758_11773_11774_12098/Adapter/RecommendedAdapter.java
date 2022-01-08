@@ -74,6 +74,7 @@ public class RecommendedAdapter extends RecyclerView.Adapter<RecommendedAdapter.
                 Intent intent = new Intent( activity, DetailResep.class);
                 intent.putExtra("nama",resep.getNama());
                 intent.putExtra("author",resep.getAuthor());
+                intent.putExtra("kategori",resep.getKategori());
                 intent.putExtra("bahan",resep.getBahan().toArray(new String[0]));
                 intent.putExtra("langkah",resep.getLangkah().toArray(new String[0]));
                 intent.putExtra("image", resep.getImage());

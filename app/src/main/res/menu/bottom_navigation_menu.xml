@@ -20,7 +20,7 @@
     <item
         android:id="@+id/page_saved"
         android:enabled="true"
-        android:icon="@drawable/bookmark"
+        android:icon="@drawable/ic_menu_bookmark"
         android:title="Tersimpan"/>
 
     <item

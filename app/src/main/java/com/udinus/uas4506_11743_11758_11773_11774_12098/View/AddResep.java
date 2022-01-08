@@ -258,7 +258,8 @@ public class AddResep extends AppCompatActivity {
                     arrayToFirebase(bahan,key,"bahan");
                     arrayToFirebase(langkah,key,"langkah");
 
-                    Toast.makeText(AddResep.this, "Berhasil Upload", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddResep.this, "Resep Berhasil Dibagikan", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

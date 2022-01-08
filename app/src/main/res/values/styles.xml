@@ -21,4 +21,11 @@
         <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
     </style>
 
+    <style name="collapsingToolbarLayoutTitleColor" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@color/orangeTextHeading</item>
+        <item name="android:textAppearance">@font/raleway_bold</item>
+
+    </style>
+
 </resources>
